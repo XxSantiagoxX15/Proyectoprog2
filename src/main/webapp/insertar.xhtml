@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<head>
+
+
+<title>Registrar usuario</title>
+
+
+</head>
+<body>
+	<h:form>
+		<p:inputText value="#{userBean.id}"></p:inputText>
+		<p:inputText value="#{userBean.nombre}"></p:inputText>
+		<p:inputText value="#{userBean.apellido}"></p:inputText>
+		<p:inputText value="#{userBean.email}"></p:inputText>
+		<p:inputText value="#{userBean.user_password}"></p:inputText>
+		<p:selectOneMenu value="#{userBean.admin}">
+			<f:selectItem itemLabel="Si" itemValue="Si" />
+			<f:selectItem itemLabel="No" itemValue="No" />
+		</p:selectOneMenu>
+		<p:commandButton value="registrar" action="#{userBean.crear}"
+			update="userDto" styleClass="rounded-button ui-button-secondary"></p:commandButton>
+		<h:outputText value="#{userBean.userDto}" id="userDto"></h:outputText>
+	</h:form>
+
+
+
+</body>
+
+</html>
