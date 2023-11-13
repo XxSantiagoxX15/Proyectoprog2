@@ -11,10 +11,12 @@ public AdminInventario() {
 	
 	
 	public boolean ingresarinv(CompraInventarioDTO dto) {
-		if (dao.create(DataMapper.fromDTO2Entityco(dto)) != false) {
-
-		}
 		
-		return false;
+		return dao.create(DataMapper.fromDTO2Entityco(dto));
+                                                             
+		
+		
+	
 	}
+	
 }

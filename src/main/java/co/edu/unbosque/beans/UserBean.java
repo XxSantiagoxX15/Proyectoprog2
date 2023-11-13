@@ -5,7 +5,7 @@ import java.io.IOException;
 import co.edu.unbosque.model.AdminUser;
 
 import co.edu.unbosque.model.UserDTO;
-import jakarta.annotation.PostConstruct;
+
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.ExternalContext;

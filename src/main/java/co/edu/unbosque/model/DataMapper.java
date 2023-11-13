@@ -91,7 +91,7 @@ public class DataMapper {
 
 	public static Forma_pago fromDTO2EntityF(Forma_pagoDTO dto) {
 		Forma_pago f = new Forma_pago();
-
+        f.setId(dto.getId());
 		f.setNombre(dto.getNombre());
 		f.setDisponible(dto.isDisponible());
 
@@ -99,7 +99,7 @@ public class DataMapper {
 	}
 
 	public static Forma_pagoDTO fromEntity2DTOF(Forma_pago f) {
-		Forma_pagoDTO fdto = new Forma_pagoDTO(f.getNombre(), f.isDisponible());
+		Forma_pagoDTO fdto = new Forma_pagoDTO(f.getId(),f.getNombre(), f.isDisponible());
 		return fdto;
 	}
 

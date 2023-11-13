@@ -37,25 +37,22 @@ public ArrayList<Forma_pagoDTO> listar() {
 	formapago = fp.listar(dto);
 	if (formapago != null) {
 		for (Forma_pagoDTO formapago: formapago) {
-			System.out.println(formapago.toString());
+			
 
 		}
 	}
 	return formapago;
 }
 
-public ArrayList<String> obtenerNombres() {
-	ArrayList<Forma_pagoDTO> formapago = fp.listar(dto);
-	ArrayList<String> nombres = new ArrayList<>();
 
-	if (formapago != null) {
-		for (Forma_pagoDTO formapagos : formapago) {
-			String nombre = formapagos.getNombre();
-			nombres.add(nombre);
-		}
-	}
 
-	return nombres;
+public Forma_pagoDTO buscar() {
+	fp.buscar(nombre);
+	System.out.println(dto.toString());
+	return dto;
+	
+	
+	
 }
 
 public String getNombre() {

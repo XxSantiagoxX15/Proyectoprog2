@@ -8,34 +8,34 @@
 <h:head>
 
 
-<title>Registrar Inventario</title>
+	<title>Registrar Inventario</title>
 
 
 </h:head>
 <body>
 	<h:form>
+		<p:selectOneMenu id="productos"value="#{inventarioBean.productos}">
+			<f:selectItems value="#{productoBean.obtenerNombres()}"
+				var="producto" itemValue="#{producto}" itemLabel="#{producto}" />
+		</p:selectOneMenu>
 
+		<p:inputText value="#{inventarioBean.cantidad_adquirida}" />
 
-		<p:selectOneMenu value="#{inventarioBean.productos}">
-    <f:selectItems value="#{productoBean.obtenerNombres()}" var="producto"
-        itemValue="#{producto}" itemLabel="#{producto}" />
-</p:selectOneMenu>
-		
-		<p:inputText value="#{inventarioBean.cantidad_adquirida}"/>
-		
-		
-			<p:selectOneMenu value="#{inventarioBean.proveedor}">
-    <f:selectItems value="#{proveedorBean.obtenerNombres()}" var="proveedor"
-        itemValue="#{proveedor}" itemLabel="#{proveedor}" />
-</p:selectOneMenu>
+		<p:selectOneMenu value="#{inventarioBean.proveedores}">
+			<f:selectItems value="#{proveedorBean.obtenerNombres()}"
+				var="proveedor" itemValue="#{proveedor}" itemLabel="#{proveedor}" />
+		</p:selectOneMenu>
 
-		<p:selectOneMenu value="#{inventarioBean.forma_pago}">
-    <f:selectItems value="#{forma_pagoBean.obtenerNombres()}" var="formapago"
-        itemValue="#{formapago}" itemLabel="#{formapago}" />
-</p:selectOneMenu>
-		<p:commandButton value="registrar" action="#{inventarioBean.insertar}"
-			update="dto" styleClass="rounded-button ui-button-secondary"/>
-		<h:outputText value="#{inventarioBean.dto}" id="dto"/>
+		<p:selectOneMenu value="#{inventarioBean.forma_pagos}">
+			<f:selectItems value="#{forma_pagoBean.listar()}" var="formapago"
+				itemValue="#{formapago.id}" itemLabel="#{formapago.nombre}" />
+		</p:selectOneMenu>
+
+		<p:commandButton value="registrar"
+			action="#{inventarioBean.insertar()}" update="dto"
+			styleClass="rounded-button ui-button-secondary" />
+		<h:outputText value="#{inventarioBean.dto}" id="dto" />
 	</h:form>
+
 </body>
 </html>

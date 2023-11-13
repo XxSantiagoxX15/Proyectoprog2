@@ -4,9 +4,11 @@ public class Forma_pagoDTO {
 	private int id;
 	private String nombre;
 	private boolean disponible;
-	public Forma_pagoDTO(String nombre,boolean disponible) {
+
+	public Forma_pagoDTO(int id,String nombre,boolean disponible) {
 this.nombre=nombre;
 this.disponible=disponible;
+this.id=id;
 
 	}
 	public Forma_pagoDTO() {
@@ -29,5 +31,9 @@ this.disponible=disponible;
 	}
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
+	}
+	@Override
+	public String toString() {
+		return "Forma_pagoDTO [id=" + id + ", nombre=" + nombre + ", disponible=" + disponible + "]";
 	}
 }

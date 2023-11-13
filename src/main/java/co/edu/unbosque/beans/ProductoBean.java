@@ -138,6 +138,10 @@ public class ProductoBean implements Serializable {
 	public void setProductos(ArrayList<ProductoDTO> productos) {
 		this.productos = productos;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	  
 	
 

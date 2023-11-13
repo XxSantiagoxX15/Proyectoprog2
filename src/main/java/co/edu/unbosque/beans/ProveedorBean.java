@@ -114,5 +114,8 @@ public ProveedorBean() {
 	public void setDto(ProveedorDTO dto) {
 		this.dto = dto;
 	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 }

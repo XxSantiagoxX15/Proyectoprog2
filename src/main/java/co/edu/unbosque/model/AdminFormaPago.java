@@ -18,12 +18,16 @@ public ArrayList<Forma_pagoDTO> listar(Forma_pagoDTO FormaPagoDTO) {
 
         Forma_pagoDTO dto= DataMapper.fromEntity2DTOF(Formapago);
         formaPagoDTO.add(dto);
+        System.out.println(dto.toString());
     }
     
     return  formaPagoDTO;
 }
 public Forma_pagoDTO buscar (String nombre) {
 	Forma_pagoDTO dto=DataMapper.fromEntity2DTOF(dao.findOne(nombre));
+	if(dto==null) {
+		System.out.println("no existe esa verga");
+	}
 		return dto;
 	}
 }

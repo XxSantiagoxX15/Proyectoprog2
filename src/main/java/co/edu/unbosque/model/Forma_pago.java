@@ -1,6 +1,6 @@
 package co.edu.unbosque.model;
 
-import java.io.Serializable;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "forma_pago")
-public class Forma_pago implements Serializable{
+public class Forma_pago {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -21,6 +21,12 @@ this.nombre=nombre;
 this.disponible=disponible;
 
 	}
+	public Forma_pago(int id,String nombre,boolean disponible) {
+		this.nombre=nombre;
+		this.disponible=disponible;
+		this.id=id;
+
+			}
 	public Forma_pago() {
 		// TODO Auto-generated constructor stub
 	}
