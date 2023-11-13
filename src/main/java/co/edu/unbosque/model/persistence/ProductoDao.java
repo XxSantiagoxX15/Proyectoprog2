@@ -145,7 +145,7 @@ public class ProductoDao implements DaoCrud {
 	}
 
 	
-	public Object findOne(String nombre) {
+	public Producto findOne(String nombre) {
 		open();
 		try {
 			Producto selectedProducto = em.find(Producto.class, nombre);

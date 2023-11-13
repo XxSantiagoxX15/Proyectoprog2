@@ -3,20 +3,24 @@ package co.edu.unbosque.beans;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import org.primefaces.PrimeFaces;
+
 
 import co.edu.unbosque.model.AdminProducto;
 
 import co.edu.unbosque.model.ProductoDTO;
+
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
+
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
 @Named
-@RequestScoped
+
+@ViewScoped
 public class ProductoBean implements Serializable {
+	 private static final long serialVersionUID = 1L;
     private String nombre;
     private String descripcion;
     private double precio;
@@ -36,7 +40,7 @@ public class ProductoBean implements Serializable {
     public void init() {
         listar();
         adminProducto = new AdminProducto();
-        productos = adminProducto.listar(dto);
+        
     }
 
     public void agregar() {
@@ -45,23 +49,35 @@ public class ProductoBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Producto insertado"));
     }
 
-    public boolean listar() {
-   productos = adminProducto.listar(dto);
-   System.out.println(productos.toString());
-        return this.dto != null && !this.productos.isEmpty();
+    public ArrayList<ProductoDTO> listar() {
+        productos = adminProducto.listar(dto);
+        if (productos != null) {
+            for (ProductoDTO producto : productos) {
+              
+               
+            }
+        }
+        return productos;
     }
+ 
+    
+    
+    public ArrayList<String> obtenerNombres() {
+        ArrayList<ProductoDTO> productos = adminProducto.listar(dto);
+        ArrayList<String> nombres = new ArrayList<>();
 
-    public void eliminarseleccionados() {
-        adminProducto.eliminar(dto);
-        this.dto = null;
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Productos eliminados"));
-        PrimeFaces.current().ajax().update("form:messages", "form:dtProducts");
-        PrimeFaces.current().executeScript("PF('dtProducts').clearFilters()");
+        if (productos != null) {
+            for (ProductoDTO producto : productos) {
+                String nombre = producto.getNombre(); 
+                nombres.add(nombre);
+            }
+        }
+
+        return nombres;
     }
-
-	public String getNombre() {
-		return nombre;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

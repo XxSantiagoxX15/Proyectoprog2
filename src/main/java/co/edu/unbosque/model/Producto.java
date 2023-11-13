@@ -1,5 +1,7 @@
 package co.edu.unbosque.model;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "producto")
-public class Producto {
+public class Producto implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -74,6 +76,11 @@ public Producto() {
 
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
+	}
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
+				+ ", cantidad_inventario=" + cantidad_inventario + ", categoria=" + categoria + "]";
 	}
 
 }

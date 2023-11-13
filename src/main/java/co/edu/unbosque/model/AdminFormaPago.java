@@ -1,0 +1,29 @@
+package co.edu.unbosque.model;
+
+import java.util.ArrayList;
+
+import co.edu.unbosque.model.persistence.Forma_pagoDao;
+
+public class AdminFormaPago {
+private Forma_pagoDao dao;
+
+public AdminFormaPago() {
+dao= new Forma_pagoDao();
+}
+public ArrayList<Forma_pagoDTO> listar(Forma_pagoDTO FormaPagoDTO) {
+    ArrayList<Forma_pago> formapago = dao.findAll();
+    ArrayList<Forma_pagoDTO> formaPagoDTO = new ArrayList<>();
+    
+    for (Forma_pago Formapago : formapago) {
+
+        Forma_pagoDTO dto= DataMapper.fromEntity2DTOF(Formapago);
+        formaPagoDTO.add(dto);
+    }
+    
+    return  formaPagoDTO;
+}
+public Forma_pagoDTO buscar (String nombre) {
+	Forma_pagoDTO dto=DataMapper.fromEntity2DTOF(dao.findOne(nombre));
+		return dto;
+	}
+}

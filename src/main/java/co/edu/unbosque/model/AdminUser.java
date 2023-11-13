@@ -36,25 +36,7 @@ public class AdminUser {
 		}
 	}
 
-	public boolean verifyPassword(String inputPassword, String storedPassword) {
-		try {
-
-			MessageDigest md = MessageDigest.getInstance("SHA-256");
-
-			byte[] inputPasswordBytes = inputPassword.getBytes();
-
-			byte[] inputPasswordHash = md.digest(inputPasswordBytes);
-
-			String hashedInputPassword = Base64.getEncoder().encodeToString(inputPasswordHash);
-			hashedInputPassword.equals(storedPassword);
-			return true;
-		} catch (NoSuchAlgorithmException e) {
-
-			e.printStackTrace();
-			return false;
-		}
-	}
-
+	
 	public void Correo(String correo, String accion, String nombre) {
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.gmail.com");
@@ -104,7 +86,7 @@ public class AdminUser {
 	
 	 UserDTO dto=DataMapper.fromEntity2DTO(dao.findOne(id));
 	 
-		if (id==(dto.id()) && encryptPassword(clave).equals(dto.user_password()) ) {
+		if (id==(dto.getId()) && encryptPassword(clave).equals(dto.getUser_password()) ) {
 			return true;
 
 		} else {
