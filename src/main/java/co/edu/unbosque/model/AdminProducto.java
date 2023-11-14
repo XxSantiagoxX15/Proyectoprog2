@@ -41,7 +41,22 @@ public class AdminProducto {
 	        return null;
 	    }
 	}
-	public void eliminar(ProductoDTO dto) {
-		dao.delete(DataMapper.fromDTO2Entityp(dto));
+	
+	public boolean editar(int id,ProductoDTO dto) {
+		if(dao.update(id, DataMapper.fromDTO2Entityp(dto))) {
+			return true;
+		}else {
+			System.out.println("no edita");
+			return false;
+		}
+		
+		
+	}
+	public void eliminar(int id ) {
+		if(dao.delete(id)) {
+			System.out.println("Se elimino mi perro");
+		}else {
+			System.out.println("no se elimino");
+		}
 	}
 }

@@ -16,7 +16,7 @@ public class DomicilioDao implements DaoCrud{
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	public DomicilioDao() {
-		emf = Persistence.createEntityManagerFactory("DomicilioPu");
+		emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 		em = emf.createEntityManager();
 
 	}
@@ -24,7 +24,7 @@ public class DomicilioDao implements DaoCrud{
 
 public void open() {
 	if (!emf.isOpen() || !em.isOpen()) {
-		emf = Persistence.createEntityManagerFactory("DomicilioPu");
+		emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 		em = emf.createEntityManager();
 	}
 

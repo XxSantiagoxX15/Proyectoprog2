@@ -27,6 +27,14 @@ public class Producto implements Serializable{
 		this.cantidad_inventario=cantidad_inventario;
 		this.categoria=categoria;
 	}
+	public Producto(int id,String nombre, String descripcion, double precio,int cantidad_inventario, String categoria) {
+		this.id=id;
+		this.nombre=nombre;
+		this.descripcion=descripcion;
+		this.precio=precio;
+		this.cantidad_inventario=cantidad_inventario;
+		this.categoria=categoria;
+	}
 public Producto() {
 	// TODO Auto-generated constructor stub
 }

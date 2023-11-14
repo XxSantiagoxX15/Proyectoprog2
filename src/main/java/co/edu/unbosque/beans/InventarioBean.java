@@ -24,10 +24,8 @@ public class InventarioBean implements Serializable {
 	private int productos;
 	private int cantidad_adquirida;
 	private LocalDate fecha;
-	private int proveedores; // Debe coincidir con el tipo de dato utilizado en el formulario
-
+	private int proveedores; 
 	private int forma_pagos;
-
 	private AdminInventario in;
 	private CompraInventarioDTO dto;
 

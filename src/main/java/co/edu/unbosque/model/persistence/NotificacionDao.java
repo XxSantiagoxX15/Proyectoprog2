@@ -13,14 +13,14 @@ public class NotificacionDao implements DaoCrud {
 	private EntityManager em;
 
 	public NotificacionDao() {
-		emf = Persistence.createEntityManagerFactory("NotificacionPu");
+		emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 		em = emf.createEntityManager();
 
 	}
 
 	public void open() {
 		if (!emf.isOpen() || !em.isOpen()) {
-			emf = Persistence.createEntityManagerFactory("NotificacionPu");
+			emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 			em = emf.createEntityManager();
 		}
 

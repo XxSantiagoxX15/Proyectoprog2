@@ -13,14 +13,14 @@ public class Forma_pagoDao implements DaoCrud {
 	private EntityManager em;
 
 	public Forma_pagoDao() {
-		emf = Persistence.createEntityManagerFactory("FormapagoPu");
+		emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 		em = emf.createEntityManager();
 
 	}
 
 	public void open() {
 		if (!emf.isOpen() || !em.isOpen()) {
-			emf = Persistence.createEntityManagerFactory("FormapagoPu");
+			emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 			em = emf.createEntityManager();
 		}
 

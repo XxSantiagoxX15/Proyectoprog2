@@ -10,17 +10,17 @@ import co.edu.unbosque.model.AdminProducto;
 import co.edu.unbosque.model.ProductoDTO;
 
 import jakarta.annotation.PostConstruct;
-
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
 @Named
-
-@ViewScoped
+@RequestScoped
 public class ProductoBean implements Serializable {
 	 private static final long serialVersionUID = 1L;
+	 private int id;
     private String nombre;
     private String descripcion;
     private double precio;
@@ -39,6 +39,7 @@ public class ProductoBean implements Serializable {
     @PostConstruct
     public void init() {
         listar();
+        
         adminProducto = new AdminProducto();
         
     }
@@ -75,7 +76,22 @@ public class ProductoBean implements Serializable {
 
         return nombres;
     }
-    public String getNombre() {
+    public void editar() {
+    dto= new ProductoDTO(id,nombre,descripcion, precio, cantidadinv, categoria);
+    adminProducto.editar(id,dto);	
+    
+    }
+    
+    public void eliminar() {
+    	adminProducto.eliminar(id);
+    }
+    public int getId() {
+		return id;
+	}
+
+
+
+	public String getNombre() {
         return nombre;
     }
 
@@ -141,6 +157,10 @@ public class ProductoBean implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	  
 	

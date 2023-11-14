@@ -15,14 +15,14 @@ public class FacturaDao implements DaoCrud{
 	private EntityManager em;
 
 	public FacturaDao() {
-		emf = Persistence.createEntityManagerFactory("FacturaPu");
+		emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 		em = emf.createEntityManager();
 
 	}
 
 	public void open() {
 		if (!emf.isOpen() || !em.isOpen()) {
-			emf = Persistence.createEntityManagerFactory("FacturaPu");
+			emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 			em = emf.createEntityManager();
 		}
 

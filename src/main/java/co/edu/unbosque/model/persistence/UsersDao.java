@@ -14,7 +14,7 @@ public class UsersDao implements DaoCrud  {
 	
 	public UsersDao() {
 
-		emf = Persistence.createEntityManagerFactory("UserPu");
+		emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 		em = emf.createEntityManager();
 
 	}
@@ -23,7 +23,7 @@ public class UsersDao implements DaoCrud  {
 	
 	public void open() {
 		if (!emf.isOpen() || !em.isOpen()) {
-			emf = Persistence.createEntityManagerFactory("UserPu");
+			emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 			em = emf.createEntityManager();
 		}
 

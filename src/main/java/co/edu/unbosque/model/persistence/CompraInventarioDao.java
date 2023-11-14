@@ -14,13 +14,13 @@ public class CompraInventarioDao implements DaoCrud {
 	private EntityManager em;
 	
 	public CompraInventarioDao() {
-		emf = Persistence.createEntityManagerFactory("CompraInventarioPu");
+		emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 		em = emf.createEntityManager();
 	}
 	
 	public void open() {
 		if (!emf.isOpen() || !em.isOpen()) {
-			emf = Persistence.createEntityManagerFactory("CompraInventarioPu");
+			emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 			em = emf.createEntityManager();
 		}
 

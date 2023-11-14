@@ -13,14 +13,14 @@ public class ProveedorDao implements DaoCrud {
 	private EntityManager em;
 
 	public ProveedorDao() {
-		emf = Persistence.createEntityManagerFactory("ProveedorPu");
+		emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 		em = emf.createEntityManager();
 
 	}
 
 	public void open() {
 		if (!emf.isOpen() || !em.isOpen()) {
-			emf = Persistence.createEntityManagerFactory("ProveedorPu");
+			emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 			em = emf.createEntityManager();
 		}
 

@@ -14,7 +14,7 @@ public class Detalle_facturaDao implements DaoCrud{
 	 public Detalle_facturaDao() {
 	
 	
-		emf = Persistence.createEntityManagerFactory("DetallePu");
+		emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 		em = emf.createEntityManager();
 
 	}
@@ -22,7 +22,7 @@ public class Detalle_facturaDao implements DaoCrud{
 	 
 	 public void open() {
 			if (!emf.isOpen() || !em.isOpen()) {
-				emf = Persistence.createEntityManagerFactory("DetallePu");
+				emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 				em = emf.createEntityManager();
 			}
 
