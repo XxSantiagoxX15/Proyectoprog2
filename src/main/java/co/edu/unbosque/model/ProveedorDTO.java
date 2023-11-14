@@ -5,10 +5,11 @@ public class ProveedorDTO {
 	private String nombre;
 	private String email;
 	private String telefono;
-	public ProveedorDTO(String nombre,String email,String telefono) {
+	public ProveedorDTO(int id,String nombre,String email,String telefono) {
 		this.nombre= nombre;
 		this.email=email;
 		this.telefono=telefono;
+		this.id=id;
 	}
 	public int getId() {
 		return id;

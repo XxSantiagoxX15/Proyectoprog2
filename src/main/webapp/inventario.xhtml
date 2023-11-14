@@ -14,16 +14,16 @@
 </h:head>
 <body>
 	<h:form>
-		<p:selectOneMenu id="productos"value="#{inventarioBean.productos}">
-			<f:selectItems value="#{productoBean.obtenerNombres()}"
-				var="producto" itemValue="#{producto}" itemLabel="#{producto}" />
+		<p:selectOneMenu value="#{inventarioBean.productos}">
+			<f:selectItems value="#{productoBean.listar()}" var="producto"
+				itemValue="#{producto.id}" itemLabel="#{producto.nombre}" />
 		</p:selectOneMenu>
 
 		<p:inputText value="#{inventarioBean.cantidad_adquirida}" />
 
 		<p:selectOneMenu value="#{inventarioBean.proveedores}">
-			<f:selectItems value="#{proveedorBean.obtenerNombres()}"
-				var="proveedor" itemValue="#{proveedor}" itemLabel="#{proveedor}" />
+			<f:selectItems value="#{proveedorBean.listar()}" var="proveedor"
+				itemValue="#{proveedor.id}" itemLabel="#{proveedor.nombre}" />
 		</p:selectOneMenu>
 
 		<p:selectOneMenu value="#{inventarioBean.forma_pagos}">

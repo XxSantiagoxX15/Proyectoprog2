@@ -3,7 +3,6 @@ package co.edu.unbosque.beans;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-
 import co.edu.unbosque.model.AdminFormaPago;
 import co.edu.unbosque.model.AdminInventario;
 import co.edu.unbosque.model.AdminProducto;
@@ -15,47 +14,38 @@ import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 
 import jakarta.inject.Named;
+
 @Named
 @RequestScoped
 public class InventarioBean implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private int productos;
-    private int cantidad_adquirida;
-    private LocalDate fecha;
-    private int proveedores; // Debe coincidir con el tipo de dato utilizado en el formulario
-    private Forma_pagoDTO forma_pagos;
-    private int formapagos;
-    private AdminProveedor pr;
-    private AdminProducto pro;
-    private AdminFormaPago fp;
-    private AdminInventario in;
-    private CompraInventarioDTO dto;
+	private int productos;
+	private int cantidad_adquirida;
+	private LocalDate fecha;
+	private int proveedores; // Debe coincidir con el tipo de dato utilizado en el formulario
 
-    @PostConstruct
-    public void init() {
-        pr = new AdminProveedor();
-        pro = new AdminProducto();
-        fp = new AdminFormaPago();
-        in = new AdminInventario();
-        dto = new CompraInventarioDTO();
-    }
+	private int forma_pagos;
 
-    public void insertar() {
-        System.out.println("Insertando...");
-        System.out.println("productos: " + productos);
-        System.out.println("proveedores: " + proveedores);
-        System.out.println("forma_pagos: " + forma_pagos);
-formapagos= forma_pagos.getId();
-proveedores=1;
-productos=3;
-        fecha = LocalDate.now();
-        dto = new CompraInventarioDTO(productos, cantidad_adquirida, fecha,proveedores , formapagos);
-        in.ingresarinv(dto);
-        System.out.println(dto.toString());
-        System.out.println(forma_pagos.toString());
-    }
+	private AdminInventario in;
+	private CompraInventarioDTO dto;
+
+	@PostConstruct
+	public void init() {
+
+		in = new AdminInventario();
+		dto = new CompraInventarioDTO();
+	}
+
+	public void insertar() {
+
+		fecha = LocalDate.now();
+		dto = new CompraInventarioDTO(productos, cantidad_adquirida, fecha, proveedores, forma_pagos);
+		in.ingresarinv(dto);
+		System.out.println(dto.toString());
+
+	}
 
 	public int getProductos() {
 		return productos;
@@ -89,46 +79,12 @@ productos=3;
 		this.proveedores = proveedores;
 	}
 
-
-
-	public Forma_pagoDTO getForma_pagos() {
+	public int getForma_pagos() {
 		return forma_pagos;
 	}
 
-	public void setForma_pagos(Forma_pagoDTO forma_pagos) {
+	public void setForma_pagos(int forma_pagos) {
 		this.forma_pagos = forma_pagos;
-	}
-
-	public int getFormapagos() {
-		return formapagos;
-	}
-
-	public void setFormapagos(int formapagos) {
-		this.formapagos = formapagos;
-	}
-
-	public AdminProveedor getPr() {
-		return pr;
-	}
-
-	public void setPr(AdminProveedor pr) {
-		this.pr = pr;
-	}
-
-	public AdminProducto getPro() {
-		return pro;
-	}
-
-	public void setPro(AdminProducto pro) {
-		this.pro = pro;
-	}
-
-	public AdminFormaPago getFp() {
-		return fp;
-	}
-
-	public void setFp(AdminFormaPago fp) {
-		this.fp = fp;
 	}
 
 	public AdminInventario getIn() {
@@ -150,14 +106,5 @@ productos=3;
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
 
-	
-		
-	}
-	
-	
-	
-	
-	 
-
+}

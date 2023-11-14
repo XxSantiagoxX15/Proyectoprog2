@@ -53,7 +53,7 @@ public class ProductoBean implements Serializable {
         productos = adminProducto.listar(dto);
         if (productos != null) {
             for (ProductoDTO producto : productos) {
-              
+              System.out.println(producto.toString());
                
             }
         }

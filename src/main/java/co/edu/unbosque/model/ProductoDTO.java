@@ -8,7 +8,15 @@ public class ProductoDTO {
 	private int cantidad_inventario;
 	private String categoria;
 	
-	public ProductoDTO (String nombre, String descripcion, double precio,int cantidad_inventario, String categoria) {
+	public ProductoDTO (int id,String nombre, String descripcion, double precio,int cantidad_inventario, String categoria) {
+		this.nombre=nombre;
+		this.descripcion=descripcion;
+		this.precio=precio;
+		this.cantidad_inventario=cantidad_inventario;
+		this.categoria=categoria;
+		this.id=id;
+	}
+	public ProductoDTO(String nombre, String descripcion, double precio,int cantidad_inventario, String categoria) {
 		this.nombre=nombre;
 		this.descripcion=descripcion;
 		this.precio=precio;

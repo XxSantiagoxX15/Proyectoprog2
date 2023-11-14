@@ -22,7 +22,7 @@ public class DataMapper {
 
 	public static Producto fromDTO2Entityp(ProductoDTO dto) {
 		Producto p = new Producto();
-
+        p.setId(dto.getId());
 		p.setNombre(dto.getNombre());
 		p.setDescripcion(dto.getDescripcion());
 		p.setPrecio(dto.getPrecio());
@@ -33,7 +33,7 @@ public class DataMapper {
 	}
 
 	public static ProductoDTO fromEntity2DTOp(Producto p) {
-		ProductoDTO pdto = new ProductoDTO(p.getNombre(), p.getDescripcion(), p.getPrecio(), p.getCantidad_inventario(),
+		ProductoDTO pdto = new ProductoDTO(p.getId(),p.getNombre(), p.getDescripcion(), p.getPrecio(), p.getCantidad_inventario(),
 				p.getCategoria());
 		return pdto;
 	}
@@ -61,7 +61,7 @@ public class DataMapper {
 
 	public static Proveedor fromDTO2Entityp(ProveedorDTO dto) {
 		Proveedor p = new Proveedor();
-
+        p.setId(dto.getId());
 		p.setNombre(dto.getNombre());
 		p.setEmail(dto.getEmail());
 		p.setTelefono(dto.getTelefono());
@@ -70,7 +70,7 @@ public class DataMapper {
 	}
 
 	public static ProveedorDTO fromEntity2DTOp(Proveedor p) {
-		ProveedorDTO pdto = new ProveedorDTO(p.getNombre(), p.getEmail(), p.getTelefono());
+		ProveedorDTO pdto = new ProveedorDTO(p.getId(),p.getNombre(), p.getEmail(), p.getTelefono());
 		return pdto;
 	}
 
