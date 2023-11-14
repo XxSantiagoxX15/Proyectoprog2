@@ -17,24 +17,53 @@ public class AdminUser {
 		dao = new UsersDao();
 	}
 
-	public String encryptPassword(String password) {
-		try {
+	  public  String encryptPassword(String password) {
+	        // Verificar si la contraseña cumple con los criterios
+	        if (isValidPassword(password)) {
+	            try {
+	                MessageDigest md = MessageDigest.getInstance("SHA-256");
 
-			MessageDigest md = MessageDigest.getInstance("SHA-256");
+	                byte[] passwordBytes = password.getBytes();
 
-			byte[] passwordBytes = password.getBytes();
+	                byte[] passwordHash = md.digest(passwordBytes);
 
-			byte[] passwordHash = md.digest(passwordBytes);
+	                String hashedPassword = Base64.getEncoder().encodeToString(passwordHash);
 
-			String hashedPassword = Base64.getEncoder().encodeToString(passwordHash);
+	                return hashedPassword;
+	            } catch (NoSuchAlgorithmException e) {
+	                e.printStackTrace();
+	                return null;
+	            }
+	        } else {
+	            System.out.println("La contraseña no cumple con los requisitos mínimos.");
+	            return null;
+	        }
+	    }
 
-			return hashedPassword;
-		} catch (NoSuchAlgorithmException e) {
+	  public static boolean isValidPassword(String password) {
+	        // Verificar la longitud mínima
+	        if (password.length() < 8) {
+	            return false;
+	        }
 
-			e.printStackTrace();
-			return null;
-		}
-	}
+	        // Verificar al menos una mayúscula y un carácter especial
+	        boolean hasUppercase = false;
+	        boolean hasSpecialCharacter = false;
+
+	        String specialCharacters = "!@#$%^&*()-_=+[]{}|;:'\",.<>/?";
+
+	        for (char c : password.toCharArray()) {
+	            if (Character.isUpperCase(c)) {
+	                hasUppercase = true;
+	            } else if (specialCharacters.indexOf(c) != -1) {
+	                hasSpecialCharacter = true;
+	            }
+	        }
+
+	        return hasUppercase && hasSpecialCharacter;
+	    }
+	    
+	    
 
 	
 	public void Correo(String correo, String accion, String nombre) {
@@ -46,7 +75,7 @@ public class AdminUser {
 		Session session = Session.getInstance(properties, new Authenticator() {
 
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("sophidrogueria@gmail.com", "Sophi123*");
+				return new PasswordAuthentication("sophidrogueria@gmail.com", "smyg onjr muay uwfa");
 			}
 		});
 
@@ -54,9 +83,9 @@ public class AdminUser {
 			// Crea un mensaje de correo
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("sophidrogueria@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(correo));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("santiagomelo15@hotmail.com"));
 			message.setSubject("Confirmacion de accion");
-			message.setText("Se realizo" + accion + "por la persona " + nombre);
+			message.setText("Se realizo prueba 1" + "por la persona  sapo");
 
 			// Envía el correo
 			Transport.send(message);

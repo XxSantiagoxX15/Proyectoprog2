@@ -54,7 +54,7 @@ public class ProductoBean implements Serializable {
         productos = adminProducto.listar(dto);
         if (productos != null) {
             for (ProductoDTO producto : productos) {
-              System.out.println(producto.toString());
+         
                
             }
         }
@@ -63,19 +63,7 @@ public class ProductoBean implements Serializable {
  
     
     
-    public ArrayList<String> obtenerNombres() {
-        ArrayList<ProductoDTO> productos = adminProducto.listar(dto);
-        ArrayList<String> nombres = new ArrayList<>();
-
-        if (productos != null) {
-            for (ProductoDTO producto : productos) {
-                String nombre = producto.getNombre(); 
-                nombres.add(nombre);
-            }
-        }
-
-        return nombres;
-    }
+ 
     public void editar() {
     dto= new ProductoDTO(id,nombre,descripcion, precio, cantidadinv, categoria);
     adminProducto.editar(id,dto);	
@@ -83,7 +71,11 @@ public class ProductoBean implements Serializable {
     }
     
     public void eliminar() {
-    	adminProducto.eliminar(id);
+    	System.out.println("Método eliminar() ejecutado");
+        // Lógica para eliminar el producto
+        adminProducto.eliminar(id);
+        // Agrega mensajes de registro para verificar si se está ejecutando correctamente
+        System.out.println("Producto eliminado con éxito");
     }
     public int getId() {
 		return id;

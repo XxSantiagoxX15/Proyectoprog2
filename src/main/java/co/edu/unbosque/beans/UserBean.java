@@ -44,10 +44,15 @@ public class UserBean {
        } else {
            administrador = false;
        }
+       if(adminUser. isValidPassword(user_password)== true) {
+    	   userDto = new UserDTO(id, nombre, apellido, email, adminUser.encryptPassword(user_password), administrador, false);
+           adminUser.insertar(userDto);
+           System.out.println("se insertó bien");
+       }else {
+    	   System.out.println("la contraseña no cumple con los requisitos");
+       }
 
-       userDto = new UserDTO(id, nombre, apellido, email, adminUser.encryptPassword(user_password), administrador, false);
-       adminUser.insertar(userDto);
-       System.out.println("se insertó bien");
+     
    }
    
    
@@ -56,6 +61,7 @@ public class UserBean {
 	  if(adminUser.login(id, user_password)==true) {
 		  try {
 	            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+	            
 	            ec.redirect("home.xhtml"); 
 	        } catch (IOException e) {
 	            e.printStackTrace();

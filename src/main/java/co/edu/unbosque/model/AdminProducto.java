@@ -30,12 +30,12 @@ public class AdminProducto {
 		return true;
 	}
 	
-	public ProductoDTO buscar(String nombre) {
-	    Producto producto = dao.findOne(nombre);
+	public ProductoDTO buscar(int id) {
+	    ProductoDTO producto =DataMapper.fromEntity2DTOp(dao.findOne(id));
 
 	    if (producto != null) {
 	       System.out.println("si pasa aca");
-	        return DataMapper.fromEntity2DTOp(producto);
+	        return producto;
 	    } else {
 	      System.out.println("Es nullo");
 	        return null;

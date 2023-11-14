@@ -10,6 +10,7 @@ import co.edu.unbosque.model.AdminProveedor;
 
 import co.edu.unbosque.model.CompraInventarioDTO;
 import co.edu.unbosque.model.Forma_pagoDTO;
+import co.edu.unbosque.model.ProductoDTO;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 
@@ -27,21 +28,32 @@ public class InventarioBean implements Serializable {
 	private int proveedores; 
 	private int forma_pagos;
 	private AdminInventario in;
+	private AdminProducto pr;
 	private CompraInventarioDTO dto;
+	private ProductoDTO dto2;
 
 	@PostConstruct
 	public void init() {
 
 		in = new AdminInventario();
 		dto = new CompraInventarioDTO();
+		pr = new AdminProducto();
 	}
 
 	public void insertar() {
-
+		pr = new AdminProducto();
 		fecha = LocalDate.now();
-		dto = new CompraInventarioDTO(productos, cantidad_adquirida, fecha, proveedores, forma_pagos);
-		in.ingresarinv(dto);
-		System.out.println(dto.toString());
+	
+		ProductoDTO pro= pr.buscar(productos);
+		dto2=new ProductoDTO(pro.getNombre(),pro.getDescripcion(),pro.getPrecio(),pro.getCantidad_inventario()+cantidad_adquirida,pro.getCategoria());
+		if(pr.editar(productos, dto2)==true) {
+			dto = new CompraInventarioDTO(productos, cantidad_adquirida, fecha, proveedores, forma_pagos);
+			in.ingresarinv(dto);
+			System.out.println(dto.toString());
+		}else {
+			System.out.println("no se cambio en producto");
+		}
+		
 
 	}
 
