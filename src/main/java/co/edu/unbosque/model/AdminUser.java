@@ -17,55 +17,53 @@ public class AdminUser {
 		dao = new UsersDao();
 	}
 
-	  public  String encryptPassword(String password) {
-	        // Verificar si la contraseña cumple con los criterios
-	        if (isValidPassword(password)) {
-	            try {
-	                MessageDigest md = MessageDigest.getInstance("SHA-256");
+	public String encryptPassword(String password) {
+		// Verificar si la contraseña cumple con los criterios
+		if (isValidPassword(password)) {
+			try {
+				MessageDigest md = MessageDigest.getInstance("SHA-256");
 
-	                byte[] passwordBytes = password.getBytes();
+				byte[] passwordBytes = password.getBytes();
 
-	                byte[] passwordHash = md.digest(passwordBytes);
+				byte[] passwordHash = md.digest(passwordBytes);
 
-	                String hashedPassword = Base64.getEncoder().encodeToString(passwordHash);
+				String hashedPassword = Base64.getEncoder().encodeToString(passwordHash);
 
-	                return hashedPassword;
-	            } catch (NoSuchAlgorithmException e) {
-	                e.printStackTrace();
-	                return null;
-	            }
-	        } else {
-	            System.out.println("La contraseña no cumple con los requisitos mínimos.");
-	            return null;
-	        }
-	    }
+				return hashedPassword;
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+				return null;
+			}
+		} else {
+			System.out.println("La contraseña no cumple con los requisitos mínimos.");
+			return null;
+		}
+	}
 
-	  public static boolean isValidPassword(String password) {
-	        // Verificar la longitud mínima
-	        if (password.length() < 8) {
-	            return false;
-	        }
+	public boolean isValidPassword(String password) {
+		
+		if (password.length() < 8) {
+			return false;
+		}
 
-	        // Verificar al menos una mayúscula y un carácter especial
-	        boolean hasUppercase = false;
-	        boolean hasSpecialCharacter = false;
+		boolean hasUppercase = false;
+		boolean hasSpecialCharacter = false;
 
-	        String specialCharacters = "!@#$%^&*()-_=+[]{}|;:'\",.<>/?";
+		String specialCharacters = "!@#$%^&*()-_=+[]{}|;:'\",.<>/?";
 
-	        for (char c : password.toCharArray()) {
-	            if (Character.isUpperCase(c)) {
-	                hasUppercase = true;
-	            } else if (specialCharacters.indexOf(c) != -1) {
-	                hasSpecialCharacter = true;
-	            }
-	        }
+		for (char c : password.toCharArray()) {
+			if (Character.isUpperCase(c)) {
+				hasUppercase = true;
+			} else if (specialCharacters.indexOf(c) != -1) {
+				hasSpecialCharacter = true;
+			}
+		}
 
-	        return hasUppercase && hasSpecialCharacter;
-	    }
-	    
-	    
+		return hasUppercase && hasSpecialCharacter;
+	}
 
 	
+
 	public void Correo(String correo, String accion, String nombre) {
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.gmail.com");
@@ -102,7 +100,7 @@ public class AdminUser {
 		if (dao.create(DataMapper.fromDTO2Entity(dto)) != false) {
 
 		}
-		//Correo(dto.email(), accion, dto.nombre());
+		// Correo(dto.email(), accion, dto.nombre());
 		return false;
 	}
 
@@ -112,10 +110,10 @@ public class AdminUser {
 	}
 
 	public boolean login(int id, String clave) {
-	
-	 UserDTO dto=DataMapper.fromEntity2DTO(dao.findOne(id));
-	 
-		if (id==(dto.getId()) && encryptPassword(clave).equals(dto.getUser_password()) ) {
+
+		UserDTO dto = DataMapper.fromEntity2DTO(dao.findOne(id));
+
+		if (id == (dto.getId()) && encryptPassword(clave).equals(dto.getUser_password())) {
 			return true;
 
 		} else {

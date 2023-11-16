@@ -56,6 +56,7 @@ public class UserBean {
    }
    
    
+   
    public void login() {
 	   
 	  if(adminUser.login(id, user_password)==true) {
@@ -69,7 +70,8 @@ public class UserBean {
 	        	
 	        
 		  
-	  }else {
+	  }else if (adminUser.login(id,user_password)==false ){
+		  
 		  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Credenciales incorrectas"));
 	  }
 	   

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Crud Producto</title>
+	<h:outputStylesheet library="primefaces"
+		name="themes/bootstrap/theme.css" />
+</h:head>
+
+<h:body>
+	<h:form id="form">
+		<p:toolbar>
+			<p:toolbarGroup>
+				<p:button value="Agregar" icon="pi pi-plus"
+					outcome="insertarproducto.xhtml" styleClass="ui-button-success"
+					style="margin-right: .5rem" />
+				<p:button value="Editar" outcome="editarproducto.xhtml"
+					styleClass="ui-button-success" style="margin-right: .5rem" />
+				<p:button value="Eliminar" outcome="eliminarproducto.xhtml"
+					styleClass="ui-button-success" style="margin-right: .5rem" />
+				<p:button value="Agregar inventario" outcome="inventario.xhtml"
+					styleClass="ui-button-success" style="margin-right: .5rem" />
+			</p:toolbarGroup>
+
+		</p:toolbar>
+
+
+
+
+
+
+		<p:dataTable id="dtProducts" var="proveedor"
+			value="#{proveedorBean.listar()}"
+			styleClass="ui-datatable products-table" paginator="true" rows="10"
+			emptyMessage="No hay productos" rowKey="#{proveedor.id}">
+
+			<p:column headerText="Nombre" sortBy="#{proveedor.nombre}"
+				filterBy="#{proveedor.nombre}">
+				<h:outputText value="#{proveedor.nombre}" />
+			</p:column>
+
+			<p:column headerText="Email" sortBy="#{proveedor.email}"
+				filterBy="#{proveedor.email}">
+				<h:outputText value="#{proveedor.email}" />
+			</p:column>
+
+			<p:column headerText="Telefono" sortBy="#{proveedor.telefono}"
+				filterBy="#{proveedor.telefono}">
+				<h:outputText value="#{proveedor.telefono}" />
+					
+				
+			</p:column>
+
+			
+
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>

@@ -198,7 +198,25 @@ public class ProductoDao implements DaoCrud {
 		return null;
 	}
 
-	
+	public ArrayList<Producto> findByInventory(){
+		open();
+		try {
+			return (ArrayList<Producto>) em.createQuery("SELECT p FROM Producto p WHERE p.cantidad_inventario <= 10 ORDER BY p.cantidad_inventario").getResultList();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+
+		} finally {
+			if (emf != null) {
+				emf.close();
+			}
+			if (em != null) {
+				em.close();
+			}
+		}
+		return new ArrayList<Producto>();
+	}
 
 	@Override
 	public boolean update(int id, Object o) {

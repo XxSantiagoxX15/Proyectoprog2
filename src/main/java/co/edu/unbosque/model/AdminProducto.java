@@ -23,6 +23,19 @@ public class AdminProducto {
 	    
 	    return productosDTO;
 	}
+	
+	public ArrayList<ProductoDTO> listarxinventario(ProductoDTO productoDTO) {
+	    ArrayList<Producto> productos = dao.findByInventory();
+	    ArrayList<ProductoDTO> productosDTO = new ArrayList<>();
+	    
+	    for (Producto producto : productos) {
+
+	        ProductoDTO dto= DataMapper.fromEntity2DTOp(producto);
+	        productosDTO.add(dto);
+	    }
+	    
+	    return productosDTO;
+	}
 
 	public boolean insertar(ProductoDTO dto) {
 

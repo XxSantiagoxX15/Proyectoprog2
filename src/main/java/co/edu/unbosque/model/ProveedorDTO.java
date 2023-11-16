@@ -11,6 +11,12 @@ public class ProveedorDTO {
 		this.telefono=telefono;
 		this.id=id;
 	}
+	public ProveedorDTO(String nombre,String email,String telefono) {
+		this.nombre= nombre;
+		this.email=email;
+		this.telefono=telefono;
+	
+	}
 	public int getId() {
 		return id;
 	}

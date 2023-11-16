@@ -7,11 +7,12 @@ import co.edu.unbosque.model.AdminProveedor;
 
 import co.edu.unbosque.model.ProveedorDTO;
 import jakarta.annotation.PostConstruct;
-import jakarta.faces.view.ViewScoped;
+import jakarta.enterprise.context.RequestScoped;
+
 import jakarta.inject.Named;
 
 @Named
-@ViewScoped
+@RequestScoped
 public class ProveedorBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private AdminProveedor pr;
@@ -45,20 +46,10 @@ public ProveedorBean() {
 		return proveedor;
 	}
 
-	public ArrayList<String> obtenerNombres() {
-		ArrayList<ProveedorDTO> proveedor = pr.listar(dto);
-		ArrayList<String> nombres = new ArrayList<>();
-
-		if (proveedor != null) {
-			for (ProveedorDTO proveedores : proveedor) {
-				String nombre = proveedores.getNombre();
-				nombres.add(nombre);
-			}
-		}
-
-		return nombres;
-	}
-
+public void agregar() {
+	dto= new ProveedorDTO(nombre,email,telefono);
+	pr.agregar(dto);
+}
 	public AdminProveedor getPr() {
 		return pr;
 	}
@@ -119,3 +110,6 @@ public ProveedorBean() {
 	}
 
 }
+
+
+

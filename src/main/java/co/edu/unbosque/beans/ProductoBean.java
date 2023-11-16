@@ -13,7 +13,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.view.ViewScoped;
+
 import jakarta.inject.Named;
 
 @Named
@@ -25,6 +25,7 @@ public class ProductoBean implements Serializable {
     private String descripcion;
     private double precio;
     private int cantidadinv;
+    private String opcionesesta;
     private String categoria;
     private AdminProducto adminProducto;
     private ProductoDTO dto;
@@ -53,6 +54,16 @@ public class ProductoBean implements Serializable {
     public ArrayList<ProductoDTO> listar() {
         productos = adminProducto.listar(dto);
         if (productos != null) {
+            for (ProductoDTO producto : productos) {
+         
+               
+            }
+        }
+        return productos;
+    }
+    public ArrayList<?> listarxinventario() {
+        if ("Inventariocant".equals(opcionesesta)) {
+        	productos = adminProducto.listarxinventario(dto);
             for (ProductoDTO producto : productos) {
          
                
@@ -153,6 +164,14 @@ public class ProductoBean implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getOpcionesesta() {
+		return opcionesesta;
+	}
+
+	public void setOpcionesesta(String opcionesesta) {
+		this.opcionesesta = opcionesesta;
 	}
 	  
 	
