@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Properties;
 
+import jakarta.faces.context.FacesContext;
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
@@ -12,6 +13,7 @@ import co.edu.unbosque.model.persistence.UsersDao;
 
 public class AdminUser {
 	private UsersDao dao;
+
 
 	public AdminUser() {
 		dao = new UsersDao();
@@ -108,18 +110,56 @@ public class AdminUser {
 		System.out.println(dao.findAll().toString());
 
 	}
+	
+	
+	public boolean login(String correo, String clave) {
+	    UserDTO dto = DataMapper.fromEntity2DTO(dao.findbyemail(correo));
 
-	public boolean login(int id, String clave) {
+	    // Obtener el contador de intentos fallidos de la sesión
+	    Integer intentosFallidos = (Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("intentosFallidos");
 
-		UserDTO dto = DataMapper.fromEntity2DTO(dao.findOne(id));
+	    // Si no existe, inicializarlo
+	    if (intentosFallidos == null) {
+	        intentosFallidos = 0;
+	    }
 
-		if (id == (dto.getId()) && encryptPassword(clave).equals(dto.getUser_password())) {
-			return true;
+	    System.out.println("Intentos fallidos antes: " + intentosFallidos);
 
-		} else {
-			return false;
-		}
+	    if (dto != null && correo.equals(dto.getEmail()) && encryptPassword(clave).equals(dto.getUser_password())) {
+	        if (!dto.isAdministrador()) {
+	            if (dto.isCta_bloqueada()) {
+	                System.out.println("La cuenta está bloqueada.");
+	                return false;
+	            }
 
+	            // Restablecer el contador de intentos fallidos
+	            intentosFallidos = 0;
+	        }
+
+	        // Limpiar el contador de intentos fallidos al iniciar sesión exitosamente
+	        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("intentosFallidos", 0);
+
+	        System.out.println("Intentos fallidos después: " + intentosFallidos);
+
+	        return true;
+	    } else {
+	        // Bloquear la cuenta
+	        dto.setCta_bloqueada(true);
+	        System.out.println("La cuenta ha sido bloqueada.");
+
+	        // Actualizar la cuenta bloqueada en la base de datos
+	        dao.updateCuentaBloqueadaByEmail(correo, true);
+
+	        // Actualizar el contador de intentos fallidos en la sesión
+	        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("intentosFallidos", intentosFallidos);
+
+	        return false;
+	    }
 	}
-
+	
+	
+	public UserDTO buscar(String email) {
+	UserDTO DTO=	DataMapper.fromEntity2DTO(dao.findbyemail(email));
+	return DTO;
+	}
 }

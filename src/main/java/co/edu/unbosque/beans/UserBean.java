@@ -25,6 +25,9 @@ public class UserBean {
 	private String admin;
 	private boolean administrador;
 	private boolean cta_bloqueada;
+
+    private boolean mostrarDialogo = false;
+    private boolean credencialesIncorrectas = false;
 	private AdminUser adminUser;
    private UserDTO userDto;
    
@@ -55,27 +58,27 @@ public class UserBean {
      
    }
    
-   
-   
+
    public void login() {
-	   
-	  if(adminUser.login(id, user_password)==true) {
-		  try {
+	    boolean loginExitoso = adminUser.login(email, user_password);
+
+	    if (loginExitoso) {
+	        try {
 	            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-	            
-	            ec.redirect("home.xhtml"); 
+	            ec.redirect("home.xhtml");
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
-	        	
-	        
-		  
-	  }else if (adminUser.login(id,user_password)==false ){
-		  
-		  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Credenciales incorrectas"));
-	  }
-	   
-   }
+	    } else {
+	        UserDTO dto = adminUser.buscar(email);
+
+	        if (dto != null && dto.isCta_bloqueada()) {
+	            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "La cuenta está bloqueada.", null));
+	        } else {
+	            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Credenciales incorrectas.", null));
+	        }
+	    }
+	}
    
    
    
@@ -154,5 +157,29 @@ public AdminUser getAdminUser() {
 
 public void setAdminUser(AdminUser adminUser) {
 	this.adminUser = adminUser;
+}
+
+
+
+public boolean isMostrarDialogo() {
+	return mostrarDialogo;
+}
+
+
+
+public void setMostrarDialogo(boolean mostrarDialogo) {
+	this.mostrarDialogo = mostrarDialogo;
+}
+
+
+
+public boolean isCredencialesIncorrectas() {
+	return credencialesIncorrectas;
+}
+
+
+
+public void setCredencialesIncorrectas(boolean credencialesIncorrectas) {
+	this.credencialesIncorrectas = credencialesIncorrectas;
 } 
 }

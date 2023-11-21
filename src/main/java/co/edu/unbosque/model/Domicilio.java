@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "domicilio")
+@Table(name = "DOMICILIO")
 public class Domicilio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
