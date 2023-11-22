@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -7,19 +7,22 @@
     xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
 </h:head>
 <h:body>
-    <h:form>
-        <p:inputText value="#{userBean.email}" placeholder="Correo" />
-        <p:inputText value="#{userBean.user_password}" placeholder="Contraseña" />
-
-        <p:commandButton value="Login" action="#{userBean.login}" styleClass="rounded-button ui-button-secondary" />
-
-        <p:commandButton value="Registrar Usuario" action="insertar.xhtml" styleClass="button" />
-
-       <h:messages id="messages" globalOnly="true" showDetail="true" showSummary="false" />
-
-      
+<div class="login-container">
+    <h:form id="loginForm">      
+            <h2 class="welcome">Bienvenido</h2>
+            <div class="input-container">
+                <p:inputText class="email" value="#{userBean.email}" placeholder="Ingresa tu Correo" />
+                <p:inputText class="pass" value="#{userBean.user_password}" placeholder="Ingresa tu Contraseña" />
+            </div>
+            <p:commandButton class="login" value="Login" action="#{userBean.login}" styleClass="rounded-button ui-button-secondary" />
+            <div class="button-container">
+                <p:commandButton class="register" value="Registrar Usuario" action="insertar.xhtml" styleClass="rounded-button ui-button-secondary" />
+            </div>
+            <h:messages id="messages" globalOnly="true" showDetail="true" showSummary="false" />
     </h:form>
+    </div>
 </h:body>
 </html>
