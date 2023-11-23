@@ -4,23 +4,29 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Properties;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import jakarta.faces.context.FacesContext;
-import jakarta.mail.*;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeMessage;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import co.edu.unbosque.model.persistence.UsersDao;
 
 public class AdminUser {
 	private UsersDao dao;
 
-
+	 private static final Logger logger = LogManager.getLogger(AdminUser.class);
 	public AdminUser() {
 		dao = new UsersDao();
 	}
 
 	public String encryptPassword(String password) {
-		// Verificar si la contraseña cumple con los criterios
+		
 		if (isValidPassword(password)) {
 			try {
 				MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -66,43 +72,52 @@ public class AdminUser {
 
 	
 
-	public void Correo(String correo, String accion, String nombre) {
-		Properties properties = new Properties();
-		properties.put("mail.smtp.host", "smtp.gmail.com");
-		properties.put("mail.smtp.port", "587");
-		properties.put("mail.smtp.auth", "true"); // Habilita la autenticación
+	public void Correo(String correo, String accion, String nombre,String subject) {
+		String host = "smtp.gmail.com";
+		final String user = "sophidrogueria@gmail.com";// change accordingly
+		final String password = "smyg onjr muay uwfa";// change accordingly
 
-		Session session = Session.getInstance(properties, new Authenticator() {
+		String to = correo;
 
+		// Get the session object
+		Properties props = new Properties();
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+
+		Session session = Session.getDefaultInstance(props, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("sophidrogueria@gmail.com", "smyg onjr muay uwfa");
+				return new PasswordAuthentication(user, password);
 			}
 		});
 
+		// Compose the message
 		try {
-			// Crea un mensaje de correo
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("sophidrogueria@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("santiagomelo15@hotmail.com"));
-			message.setSubject("Confirmacion de accion");
-			message.setText("Se realizo prueba 1" + "por la persona  sapo");
+			
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(user));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			message.setSubject(subject);
+			message.setText(accion +nombre);
+			
 
-			// Envía el correo
+			// send the message
 			Transport.send(message);
+			System.out.println("message sent successfully...");
 
-			System.out.println("El correo ha sido enviado con éxito.");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
+
 	}
-
 	public boolean insertar(UserDTO dto) {
-		String accion = "Agregar nuevo usuario";
-
+		String accion = "Se acaba de crear un nuevo usuario con correo  ";
+        String subject="Creacion de nuevo usuario en Shopy administrativo";
 		if (dao.create(DataMapper.fromDTO2Entity(dto)) != false) {
 
 		}
-		// Correo(dto.email(), accion, dto.nombre());
+		 Correo(dto.getEmail(), accion, dto.getEmail(),subject);
 		return false;
 	}
 
@@ -136,6 +151,9 @@ public class AdminUser {
 	            intentosFallidos = 0;
 	        }
 
+	        // Almacenar el correo en la sesión
+	        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioCorreo", correo);
+
 	        // Limpiar el contador de intentos fallidos al iniciar sesión exitosamente
 	        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("intentosFallidos", 0);
 
@@ -143,12 +161,15 @@ public class AdminUser {
 
 	        return true;
 	    } else {
-	        // Bloquear la cuenta
-	        dto.setCta_bloqueada(true);
-	        System.out.println("La cuenta ha sido bloqueada.");
+	        // Verificar si el usuario es administrador antes de bloquear la cuenta
+	        if (!dto.isAdministrador()) {
+	            // Bloquear la cuenta solo si no es un administrador
+	            dto.setCta_bloqueada(true);
+	            System.out.println("La cuenta ha sido bloqueada.");
 
-	        // Actualizar la cuenta bloqueada en la base de datos
-	        dao.updateCuentaBloqueadaByEmail(correo, true);
+	            // Actualizar la cuenta bloqueada en la base de datos
+	            dao.updateCuentaBloqueadaByEmail(correo, true);
+	        }
 
 	        // Actualizar el contador de intentos fallidos en la sesión
 	        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("intentosFallidos", intentosFallidos);
@@ -156,7 +177,6 @@ public class AdminUser {
 	        return false;
 	    }
 	}
-	
 	
 	public UserDTO buscar(String email) {
 	UserDTO DTO=	DataMapper.fromEntity2DTO(dao.findbyemail(email));

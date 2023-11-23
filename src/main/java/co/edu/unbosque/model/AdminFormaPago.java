@@ -2,11 +2,14 @@ package co.edu.unbosque.model;
 
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import co.edu.unbosque.model.persistence.Forma_pagoDao;
 
 public class AdminFormaPago {
 private Forma_pagoDao dao;
-
+private static final Logger logger = LogManager.getLogger(AdminFormaPago.class);
 public AdminFormaPago() {
 dao= new Forma_pagoDao();
 }

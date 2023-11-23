@@ -2,11 +2,14 @@ package co.edu.unbosque.model;
 
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import co.edu.unbosque.model.persistence.ProveedorDao;
 
 public class AdminProveedor {
 	private ProveedorDao dao;
-
+	private static final Logger logger = LogManager.getLogger(AdminProveedor.class);
 	public AdminProveedor() {
 		dao = new ProveedorDao();
 	}
@@ -39,3 +42,4 @@ public class AdminProveedor {
 		return false;
 	}
 }
+
