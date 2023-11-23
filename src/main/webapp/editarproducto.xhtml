@@ -2,36 +2,37 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-
-
-	<title>Editar Producto</title>
-
-
+    <title>Editar Producto</title>
+    <link rel="stylesheet" type="text/css" href="css/editarproducto.css" />
 </h:head>
-<body>
-    <h:form>
-        <p:commandButton value="Volver" icon="pi pi-arrow-left" action="producto.xhtml"
-            styleClass="ui-button-success" style="margin-right: .5rem"/>
 
+<body>
+    <h:form class="center">
+    <label for="nombre">Producto:</label>
         <p:selectOneMenu value="#{productoBean.id}">
+        <label for="nombre">Id:</label>
             <f:selectItems value="#{productoBean.listar()}" var="producto"
                 itemValue="#{producto.id}" itemLabel="#{producto.nombre}" />
         </p:selectOneMenu>
+        <label for="nombre">Nombre:</label>
         <p:inputText value="#{productoBean.nombre}"></p:inputText>
+        <label for="nombre">Descripcion:</label>
         <p:inputText value="#{productoBean.descripcion}"></p:inputText>
+        <label for="nombre">Precio:</label>
         <p:inputText value="#{productoBean.precio}"></p:inputText>
+        <label for="nombre">Cantidad:</label>
         <p:inputText value="#{productoBean.cantidadinv}"></p:inputText>
-        
-
         <p:commandButton value="registrar" action="#{productoBean.editar}"
             update="Dto" styleClass="rounded-button ui-button-secondary"></p:commandButton>
         <h:outputText value="#{productoBean.dto}" id="Dto"></h:outputText>
+       <p:button value="Volver" icon="pi pi-plus" outcome="producto.xhtml"
+                styleClass="rounded-button ui-button-secondary back-button-container" />
     </h:form>
 </body>
+
 </html>

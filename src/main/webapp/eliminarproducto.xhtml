@@ -8,13 +8,11 @@
 
 <h:head>
     <title>Eliminar Producto</title>
+    <link rel="stylesheet" type="text/css" href="css/eliminar.css" />
 </h:head>
 
 <body>
     <h:form>
-        <p:commandButton value="Volver" icon="pi pi-arrow-left" action="producto.xhtml"
-            styleClass="ui-button-success" style="margin-right: .5rem"/>
-
         <h:panelGrid columns="2">
             <h:outputLabel for="productoMenu" value="Seleccionar Producto:" />
             <p:selectOneMenu id="productoMenu" value="#{productoBean.id}">
@@ -22,10 +20,12 @@
                     itemValue="#{producto.id}" itemLabel="#{producto.nombre}" />
             </p:selectOneMenu>
 
-            <h:panelGroup /> <!-- Espacio en blanco entre elementos -->
+            <h:panelGroup /> 
 
             <p:commandButton value="Eliminar" action="#{productoBean.eliminar}"
                 update="productoMenu, Dto" styleClass="rounded-button ui-button-secondary" />
+                <p:commandButton value="Volver" icon="pi pi-arrow-left" action="producto.xhtml"
+            styleClass="rounded-button ui-button-secondary"/>
         </h:panelGrid>
 
         <h:outputText value="#{productoBean.dto}" id="Dto" />

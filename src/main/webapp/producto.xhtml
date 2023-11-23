@@ -9,29 +9,23 @@
 	
 	<h:outputStylesheet library="primefaces"
 		name="themes/bootstrap/theme.css" />
+	<link rel="stylesheet" type="text/css" href="css/producto.css" />
 </h:head>
 
 <h:body>
 	<h:form id="form">
-		<p:toolbar>
-			<p:toolbarGroup>
+		<p:toolbar class="navbar">
+			<p:toolbarGroup class="navbar">
 				<p:button value="New" icon="pi pi-plus"
-					outcome="insertarproducto.xhtml" styleClass="ui-button-success"
-					style="margin-right: .5rem" />
+					outcome="insertarproducto.xhtml" styleClass="rounded-button ui-button-secondary"/>
 				<p:button value="Editar" outcome="editarproducto.xhtml"
-					styleClass="ui-button-success" style="margin-right: .5rem" />
+					styleClass="rounded-button ui-button-secondary"/>
 				<p:button value="Eliminar" outcome="eliminarproducto.xhtml"
-					styleClass="ui-button-success" style="margin-right: .5rem" />
+					styleClass="rounded-button ui-button-secondary"/>
 				<p:button value="Agregar inventario" outcome="inventario.xhtml"
-					styleClass="ui-button-success" style="margin-right: .5rem" />
+					styleClass="rounded-button ui-button-secondary"/>
 			</p:toolbarGroup>
-
 		</p:toolbar>
-
-
-
-
-
 
 		<p:dataTable id="dtProducts" var="producto"
 			value="#{productoBean.listar()}"

@@ -1,0 +1,90 @@
+/* insertarproducto.css */
+
+body {
+    background-color: #b3e5e5;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    text-align: left;
+    width: 50%;
+}
+
+.field {
+    margin-bottom: 15px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.field input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.button-container {
+    margin-top: 15px;
+}
+
+/* Estilos adicionales para los elementos dentro del formulario, si es necesario */
+
+/* insertar.css */
+
+.register-container {
+    background-color: rgba(184, 193, 193, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.create {
+    color: #ffffff;
+}
+
+.input-field {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.rounded-button,
+.ui-button-secondary {
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.ui-button-secondary {
+    background-color: #2ecc71;
+    color: #ffffff;
+}
+
+.rounded-button,
+.ui-button-secondary {
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px; /* Agregado para espacio inferior */
+}
+
+.back-button-container {
+    margin-top: 10px;
+}
+
+.register-container .rounded-button,
+.register-container .ui-button-secondary {
+    margin-bottom: 15px; /* Nuevo margen inferior para los botones en register-container */
+}

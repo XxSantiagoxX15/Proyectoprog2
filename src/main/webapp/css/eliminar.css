@@ -1,0 +1,46 @@
+/* insertar.css */
+
+body {
+    background-color: #b3e5e5;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.register-container {
+    background-color: rgba(184, 193, 193, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.create {
+    color: #ffffff;
+}
+
+.input-field {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.rounded-button,
+.ui-button-secondary {
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.ui-button-secondary {
+    background-color: #2ecc71;
+    color: #ffffff;
+}
+
+.back-button-container {
+    margin-top: 10px;
+}

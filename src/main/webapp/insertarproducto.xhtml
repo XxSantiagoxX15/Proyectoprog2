@@ -2,25 +2,50 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
 <h:head>
-	<title>Registrar Producto</title>
+    <title>Registrar Producto</title>
+    <link rel="stylesheet" type="text/css" href="css/insertarproducto.css" />
+
 </h:head>
+
 <body>
-	<h:form>
-	 <p:button value="Volver" icon="pi pi-plus" outcome="producto.xhtml"
-                styleClass="ui-button-success" style="margin-right: .5rem"/>
-		<p:inputText value="#{productoBean.nombre}"></p:inputText>
-		<p:inputText value="#{productoBean.descripcion}"></p:inputText>
-		<p:inputText value="#{productoBean.precio}"></p:inputText>
-		<p:inputText value="#{productoBean.cantidadinv}"></p:inputText>
-		<p:inputText value="#{productoBean.categoria}"></p:inputText>
-	
-		<p:commandButton value="registrar" action="#{productoBean.agregar}"
-			update="Dto" styleClass="rounded-button ui-button-secondary"></p:commandButton>
-		<h:outputText value="#{productoBean.dto}" id="Dto"></h:outputText>
-	</h:form>
+    <div class="register-container">
+        <h:form>
+            <div class="field input-field">
+                <label for="nombre">Producto:</label>
+                <p:inputText id="nombre" value="#{productoBean.nombre}" placeholder="Nombre del producto" />
+            </div>
+
+            <div class="field input-field">
+                <label for="descripcion">Descripción:</label>
+                <p:inputText id="descripcion" value="#{productoBean.descripcion}" placeholder="Descripción" />
+            </div>
+
+            <div class="field input-field">
+                <label for="precio">Precio:</label>
+                <p:inputText id="precio" value="#{productoBean.precio}" placeholder="Precio" />
+            </div>
+
+            <div class="field input-field">
+                <label for="cantidadinv">Cantidad en Inventario:</label>
+                <p:inputText id="cantidadinv" value="#{productoBean.cantidadinv}" placeholder="Cantidad en Inventario" />
+            </div>
+
+            <div class="field input-field">
+                <label for="categoria">Categoría:</label>
+                <p:inputText id="categoria" value="#{productoBean.categoria}" placeholder="Categoría" />
+            </div>
+            <p:commandButton value="Registrar" action="#{productoBean.agregar}" update="Dto"
+                styleClass="rounded-button ui-button-secondary" />
+			<p:button value="Volver" icon="pi pi-plus" outcome="producto.xhtml"
+                styleClass="rounded-button ui-button-secondary back-button-container" />
+            <h:outputText value="#{productoBean.dto}" id="Dto" />
+        </h:form>
+    </div>
 </body>
+
 </html>

@@ -1,0 +1,52 @@
+/* insertar.css */
+/* ... (otros estilos) ... */
+
+.rounded-button,
+.ui-button-secondary {
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px; /* Agregado para espacio inferior */
+}
+
+.back-button-container {
+    margin-top: 10px;
+}
+
+.register-container .rounded-button,
+.register-container .ui-button-secondary {
+    margin-bottom: 15px; /* Nuevo margen inferior para los botones en register-container */
+}
+/* insertar.css */
+/* ... (otros estilos) ... */
+
+.rounded-button,
+.ui-button-secondary {
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px; /* Agregado para espacio inferior */
+}
+
+.back-button-container {
+    margin-top: 10px;
+}
+
+.register-container .rounded-button,
+.register-container .ui-button-secondary {
+    margin-bottom: 15px; /* Nuevo margen inferior para los botones en register-container */
+}
+
+.center {
+    text-align: center;
+}
+/* editarproducto.css */
+.center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
