@@ -25,7 +25,7 @@ public class UserBean {
 	private String admin;
 	private boolean administrador;
 	private boolean cta_bloqueada;
-
+    private String mensaje;
     private boolean mostrarDialogo = false;
     private boolean credencialesIncorrectas = false;
 	private AdminUser adminUser;
@@ -60,26 +60,34 @@ public class UserBean {
    
 
    public void login() {
-	    boolean loginExitoso = adminUser.login(email, user_password);
+	    String mensajeLogin = adminUser.login(email, user_password);
 
-	    if (loginExitoso) {
+
+	    if (mensajeLogin.equals("Inicio de sesión exitoso")) {
 	        try {
 	            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 	            ec.redirect("home.xhtml");
+	            return;  // Importante: salir del método después de la redirección exitosa
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
-	    } else {
-	        UserDTO dto = adminUser.buscar(email);
-
-	        if (dto != null && dto.isCta_bloqueada()) {
-	            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "La cuenta está bloqueada.", null));
-	        } else {
-	            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Credenciales incorrectas.", null));
-	        }
 	    }
+
+	    // En este punto, el inicio de sesión no fue exitoso, así que se establecerá el mensaje de acuerdo a la lógica
+	    if (mensajeLogin.equals("La cuenta está bloqueada.") || mensajeLogin.equals("Se ha excedido el límite de intentos fallidos. La cuenta ha sido bloqueada.")) {
+	        mensaje = "La cuenta se encuentra bloqueada";
+	    } else if (mensajeLogin.equals("Credenciales incorrectas.") || mensajeLogin.startsWith("Inicio de sesión fallido.")) {
+	        mensaje = "Se equivocó con sus credenciales, algo está mal";
+	    } else {
+	        // Otros posibles mensajes de error
+	        mensaje = "Tuvo un error al iniciar sesión";
+	    }
+
+	  
+	    System.out.println("Estado de mensaje: " + mensaje);
+
+	   
 	}
-   
    
    
 public int getId() {
@@ -181,5 +189,17 @@ public boolean isCredencialesIncorrectas() {
 
 public void setCredencialesIncorrectas(boolean credencialesIncorrectas) {
 	this.credencialesIncorrectas = credencialesIncorrectas;
+}
+
+
+
+public String getMensaje() {
+	return mensaje;
+}
+
+
+
+public void setMensaje(String mensaje) {
+	this.mensaje = mensaje;
 } 
 }

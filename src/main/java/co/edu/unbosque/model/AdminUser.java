@@ -126,8 +126,7 @@ public class AdminUser {
 
 	}
 	
-	
-	public boolean login(String correo, String clave) {
+	public String login(String correo, String clave) {
 	    UserDTO dto = DataMapper.fromEntity2DTO(dao.findbyemail(correo));
 
 	    // Obtener el contador de intentos fallidos de la sesión
@@ -138,46 +137,50 @@ public class AdminUser {
 	        intentosFallidos = 0;
 	    }
 
-	    System.out.println("Intentos fallidos antes: " + intentosFallidos);
+	    // Verificar si la cuenta está bloqueada
+	    if (dto != null && dto.isCta_bloqueada()) {
+	        return "La cuenta está bloqueada.";
+	    }
 
 	    if (dto != null && correo.equals(dto.getEmail()) && encryptPassword(clave).equals(dto.getUser_password())) {
-	        if (!dto.isAdministrador()) {
-	            if (dto.isCta_bloqueada()) {
-	                System.out.println("La cuenta está bloqueada.");
-	                return false;
-	            }
-
-	            // Restablecer el contador de intentos fallidos
-	            intentosFallidos = 0;
-	        }
-
 	        // Almacenar el correo en la sesión
 	        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioCorreo", correo);
 
 	        // Limpiar el contador de intentos fallidos al iniciar sesión exitosamente
 	        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("intentosFallidos", 0);
 
-	        System.out.println("Intentos fallidos después: " + intentosFallidos);
-
-	        return true;
+	        return "Inicio de sesión exitoso";
 	    } else {
-	        // Verificar si el usuario es administrador antes de bloquear la cuenta
-	        if (!dto.isAdministrador()) {
-	            // Bloquear la cuenta solo si no es un administrador
-	            dto.setCta_bloqueada(true);
-	            System.out.println("La cuenta ha sido bloqueada.");
-
-	            // Actualizar la cuenta bloqueada en la base de datos
-	            dao.updateCuentaBloqueadaByEmail(correo, true);
-	        }
+	        // Incrementar el contador de intentos fallidos
+	        intentosFallidos++;
 
 	        // Actualizar el contador de intentos fallidos en la sesión
 	        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("intentosFallidos", intentosFallidos);
 
-	        return false;
+	        // Si se supera un límite de intentos fallidos, bloquear la cuenta
+	        if (intentosFallidos >= 3) {
+	            // Bloquear la cuenta solo si no es un administrador
+	            if (dto != null && !dto.isAdministrador()) {
+	                dto.setCta_bloqueada(true);
+
+	                // Reiniciar el contador de intentos fallidos después de bloquear la cuenta
+	                intentosFallidos = 0;
+
+	                // Actualizar la cuenta bloqueada en la base de datos
+	                dao.updateCuentaBloqueadaByEmail(correo, true);
+
+	                return "Se ha excedido el límite de intentos fallidos. La cuenta ha sido bloqueada.";
+	            }
+	        }
+
+	        // Retornar un mensaje genérico de inicio de sesión fallido
+	        if (dto != null && dto.isAdministrador()) {
+	            return "Credenciales incorrectas para administrador. Intento fallido número " + intentosFallidos;
+	        } else {
+	            return "Credenciales incorrectas. Intento fallido número " + intentosFallidos;
+	        }
 	    }
 	}
-	
 	public UserDTO buscar(String email) {
 	UserDTO DTO=	DataMapper.fromEntity2DTO(dao.findbyemail(email));
 	return DTO;

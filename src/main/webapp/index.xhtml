@@ -17,11 +17,13 @@
                 <p:inputText class="email" value="#{userBean.email}" placeholder="Ingresa tu Correo" />
                 <p:inputText class="pass" value="#{userBean.user_password}" placeholder="Ingresa tu Contraseña" />
             </div>
-            <p:commandButton class="login" value="Login" action="#{userBean.login}" styleClass="rounded-button ui-button-secondary" />
+            <p:commandButton class="login" value="Login" action="#{userBean.login}" update="Login" styleClass="rounded-button ui-button-secondary" />
+              <h:outputText value="#{userBean.mensaje}" id="Login" />           
             <div class="button-container">
-                <p:commandButton class="register" value="Registrar Usuario" action="insertar.xhtml" styleClass="rounded-button ui-button-secondary" />
+                <p:commandButton class="register" value="Registrar Usuario" action="insertar.xhtml"  styleClass="rounded-button ui-button-secondary" />
+           
             </div>
-            <h:messages id="messages" globalOnly="true" showDetail="true" showSummary="false" />
+           
     </h:form>
     </div>
 </h:body>
