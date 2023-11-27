@@ -1,6 +1,9 @@
 package co.edu.unbosque.model;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -91,7 +94,28 @@ public class AdminProducto {
 	    
 	    return productosDTO;
 	}
+	
 
+
+	public List<ProductoDTO> listarxMasvendidos(ProductoDTO productoDTO) {
+	    List<Object[]> productos = dao.findBybestseller();
+	    List<ProductoDTO> productosDTO = new ArrayList<>();
+	    
+	    for (Object[] productoArray : productos) {
+	       
+	    	
+	        String nombre = (String) productoArray[0];
+	 
+	       
+
+	        BigInteger cantidad = (BigInteger) productoArray[2];
+
+	        ProductoDTO dto = new ProductoDTO( nombre,cantidad);
+	        productosDTO.add(dto);
+	    }
+	    
+	    return productosDTO;
+	}
 	public boolean insertar(ProductoDTO dto) {
 		String accion="Se acaba de insertar un nuevo producto por el usuario :";
 		String subject="Se acaba de insertar un nuevo producto a la drogueria";

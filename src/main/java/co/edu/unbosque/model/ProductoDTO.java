@@ -1,13 +1,18 @@
 package co.edu.unbosque.model;
 
+import java.math.BigInteger;
+
 public class ProductoDTO {
 	private int id;
 	private String nombre;
 	private String descripcion;
 	private double precio;
 	private int cantidad_inventario;
+	private BigInteger cantidadinv;
 	private String categoria;
-	
+	public ProductoDTO() {
+		// TODO Auto-generated constructor stub
+	}
 	public ProductoDTO (int id,String nombre, String descripcion, double precio,int cantidad_inventario, String categoria) {
 		this.nombre=nombre;
 		this.descripcion=descripcion;
@@ -22,6 +27,12 @@ public class ProductoDTO {
 		this.precio=precio;
 		this.cantidad_inventario=cantidad_inventario;
 		this.categoria=categoria;
+	}
+	public ProductoDTO( String nombre,BigInteger cantidad_inventario) {
+
+		this.nombre=nombre;
+		
+		this.cantidadinv=cantidad_inventario;
 	}
 
 	public int getId() {
@@ -75,5 +86,11 @@ public class ProductoDTO {
 	public String toString() {
 		return "ProductoDTO [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
 				+ ", cantidad_inventario=" + cantidad_inventario + ", categoria=" + categoria + "]";
+	}
+	public BigInteger getCantidadinv() {
+		return cantidadinv;
+	}
+	public void setCantidadinv(BigInteger cantidadinv) {
+		this.cantidadinv = cantidadinv;
 	}
 }

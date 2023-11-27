@@ -11,13 +11,9 @@
 	<persistence-unit name="DrogueriaPu">
     <class>co.edu.unbosque.model.Compra_inventario</class>
     <class>co.edu.unbosque.model.Detalle_factura</class>
-    <class>co.edu.unbosque.model.Domicilio</class>
-    <class>co.edu.unbosque.model.Factura</class>
     <class>co.edu.unbosque.model.Forma_pago</class>
-    <class>co.edu.unbosque.model.Notificacion</class>
     <class>co.edu.unbosque.model.Proveedor</class>
     <class>co.edu.unbosque.model.Usuarios_drogueria</class>
-    <class>co.edu.unbosque.model.Cliente</class>
     <class>co.edu.unbosque.model.Producto</class>
 
     <properties>

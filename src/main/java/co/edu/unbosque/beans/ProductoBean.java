@@ -1,8 +1,9 @@
 package co.edu.unbosque.beans;
 
-import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.primefaces.model.charts.ChartData;
 import org.primefaces.model.charts.donut.DonutChartDataSet;
@@ -25,132 +26,172 @@ import jakarta.inject.Named;
 @Named
 @ViewScoped
 public class ProductoBean implements Serializable {
-	 private static final long serialVersionUID = 1L;
-	 private int id;
-    private String nombre;
-    private String descripcion;
-    private double precio;
-    private int cantidadinv;
-    private String opcionesesta;
-    private String categoria;
-    private AdminProducto adminProducto;
-    private ProductoDTO dto;
-    private ArrayList<ProductoDTO> productos;
-    private DonutChartModel donut;
-    private   ChartData data;
-    public ProductoBean() {
-    
-        adminProducto = new AdminProducto();
-   
-    }
+	private static final long serialVersionUID = 1L;
+	private int id;
+	private String nombre;
+	private String descripcion;
+	private double precio;
+	private int cantidadinv;
+	private String opcionesesta;
+	private String categoria;
+	private AdminProducto adminProducto;
+	private ProductoDTO dto;
+	private ArrayList<ProductoDTO> productos;
+	private DonutChartModel donut;
+	private ChartData data;
 
-    @PostConstruct
-    public void init() {
-        listar();
-        createDonutModel(); 
-        adminProducto = new AdminProducto();
-        
-    }
+	public ProductoBean() {
 
-    public void agregar() {
-        dto = new ProductoDTO(nombre, descripcion, precio, cantidadinv, categoria);
-        adminProducto.insertar(dto);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Producto insertado"));
-    }
+		adminProducto = new AdminProducto();
 
-    public ArrayList<ProductoDTO> listar() {
-        productos = adminProducto.listar(dto);
-        if (productos != null) {
-            for (ProductoDTO producto : productos) {
-         
-               
-            }
-        }
-        return productos;
-    }
-    public ArrayList<ProductoDTO> listarxinventario() {
-        if ("Inventariocant".equals(opcionesesta)) {
-        	productos = adminProducto.listarxinventario(dto);
-            for (ProductoDTO producto : productos) {
-         
-               
-            }
-        }
-        return productos;
-    }
- 
-    public DonutChartModel createDonutModel() {
-        DonutChartModel donut = new DonutChartModel();
-        DonutChartOptions options = new DonutChartOptions();
-        options.setMaintainAspectRatio(false);
-        donut.setOptions(options);
+	}
 
-        ArrayList<ProductoDTO> listaProductos = adminProducto.listarxinventario(dto);
+	@PostConstruct
+	public void init() {
+		listar();
 
-        // Mover la creación de DonutChartDataSet fuera del bucle
-        DonutChartDataSet dataSet = new DonutChartDataSet();
-        ArrayList<Number> values = new ArrayList<>();
-        ArrayList<String> bgColors = new ArrayList<>();
+		adminProducto = new AdminProducto();
 
-        for (ProductoDTO producto : listaProductos) {
-            int cantidadinv = producto.getCantidad_inventario();
-            values.add(cantidadinv);
+	}
 
-            // Generar un color aleatorio en formato "rgb(r, g, b)"
-            String randomColor = generateRandomColor();
-            bgColors.add(randomColor);
-        }
+	public void agregar() {
+		dto = new ProductoDTO(nombre, descripcion, precio, cantidadinv, categoria);
+		adminProducto.insertar(dto);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Producto insertado"));
+	}
 
-        dataSet.setData(values);
-        dataSet.setBackgroundColor(bgColors);
+	public ArrayList<ProductoDTO> listar() {
+		productos = adminProducto.listar(dto);
+		if (productos != null) {
+			for (ProductoDTO producto : productos) {
 
-        ChartData data = new ChartData();
-        data.addChartDataSet(dataSet);
+			}
+		}
+		return productos;
+	}
 
-        // Mover la creación de labels fuera del bucle
-        ArrayList<String> labels = new ArrayList<>();
-        for (ProductoDTO producto : listaProductos) {
-            String data2 = producto.getNombre();
-            labels.add(data2);
-        }
-        data.setLabels(labels);
+	public ArrayList<ProductoDTO> listarxinventario() {
+		if ("Inventariocant".equals(opcionesesta)) {
+			productos = adminProducto.listarxinventario(dto);
+			for (ProductoDTO producto : productos) {
 
-        donut.setData(data);
+			}
+		}
+		return productos;
+	}
 
-        return donut;
-    }
+	public DonutChartModel crearDonaProductosxagotar() {
+		DonutChartModel donut = new DonutChartModel();
+		DonutChartOptions options = new DonutChartOptions();
+		options.setMaintainAspectRatio(false);
+		donut.setOptions(options);
 
-    private String generateRandomColor() {
-        int r = (int) (Math.random() * 256);
-        int g = (int) (Math.random() * 256);
-        int b = (int) (Math.random() * 256);
+		ArrayList<ProductoDTO> listaProductos = adminProducto.listarxinventario(dto);
 
-        return String.format("rgb(%d, %d, %d)", r, g, b);
-    }
-    
-    
-    public void editar() {
-    dto= new ProductoDTO(id,nombre,descripcion, precio, cantidadinv, categoria);
-    adminProducto.editar(id,dto);	
-    
-    }
-    
-    public void eliminar() {
-    	System.out.println("Método eliminar() ejecutado");
-        // Lógica para eliminar el producto
-        adminProducto.eliminar(id);
-        // Agrega mensajes de registro para verificar si se está ejecutando correctamente
-        System.out.println("Producto eliminado con éxito");
-    }
-    public int getId() {
+		// Mover la creación de DonutChartDataSet fuera del bucle
+		DonutChartDataSet dataSet = new DonutChartDataSet();
+		ArrayList<Number> values = new ArrayList<>();
+		ArrayList<String> bgColors = new ArrayList<>();
+
+		for (ProductoDTO producto : listaProductos) {
+			int cantidadinv = producto.getCantidad_inventario();
+			values.add(cantidadinv);
+
+			// Generar un color aleatorio en formato "rgb(r, g, b)"
+			String randomColor = generateRandomColor();
+			bgColors.add(randomColor);
+		}
+
+		dataSet.setData(values);
+		dataSet.setBackgroundColor(bgColors);
+
+		ChartData data = new ChartData();
+		data.addChartDataSet(dataSet);
+
+		// Mover la creación de labels fuera del bucle
+		ArrayList<String> labels = new ArrayList<>();
+		for (ProductoDTO producto : listaProductos) {
+			String data2 = producto.getNombre();
+			labels.add(data2);
+		}
+		data.setLabels(labels);
+
+		donut.setData(data);
+
+		return donut;
+	}
+
+	public DonutChartModel crearDonaProductosmasvendidos() {
+		DonutChartModel donut = new DonutChartModel();
+		DonutChartOptions options = new DonutChartOptions();
+		options.setMaintainAspectRatio(false);
+		donut.setOptions(options);
+
+		List<ProductoDTO> listaProductos = adminProducto.listarxMasvendidos(dto);
+
+		// Mover la creación de DonutChartDataSet fuera del bucle
+		DonutChartDataSet dataSet = new DonutChartDataSet();
+		ArrayList<Number> values = new ArrayList<>();
+		ArrayList<String> bgColors = new ArrayList<>();
+
+		for (ProductoDTO producto : listaProductos) {
+			BigInteger cantidadinv = producto.getCantidadinv();
+			values.add(cantidadinv);
+
+			// Generar un color aleatorio en formato "rgb(r, g, b)"
+			String randomColor = generateRandomColor();
+			bgColors.add(randomColor);
+		}
+
+		dataSet.setData(values);
+		dataSet.setBackgroundColor(bgColors);
+
+		ChartData data = new ChartData();
+		data.addChartDataSet(dataSet);
+
+		// Mover la creación de labels fuera del bucle
+		ArrayList<String> labels = new ArrayList<>();
+		for (ProductoDTO producto : listaProductos) {
+			String data2 = producto.getNombre();
+			labels.add(data2);
+		}
+		data.setLabels(labels);
+
+		donut.setData(data);
+
+		return donut;
+	}
+
+	private String generateRandomColor() {
+		int r = (int) (Math.random() * 256);
+		int g = (int) (Math.random() * 256);
+		int b = (int) (Math.random() * 256);
+
+		return String.format("rgb(%d, %d, %d)", r, g, b);
+	}
+
+	public void editar() {
+		dto = new ProductoDTO(id, nombre, descripcion, precio, cantidadinv, categoria);
+		adminProducto.editar(id, dto);
+
+	}
+
+	public void eliminar() {
+		System.out.println("Método eliminar() ejecutado");
+		// Lógica para eliminar el producto
+		adminProducto.eliminar(id);
+		// Agrega mensajes de registro para verificar si se está ejecutando
+		// correctamente
+		System.out.println("Producto eliminado con éxito");
+	}
+
+	public int getId() {
 		return id;
 	}
 
-
-
 	public String getNombre() {
-        return nombre;
-    }
+		return nombre;
+	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -243,9 +284,5 @@ public class ProductoBean implements Serializable {
 	public void setData(ChartData data) {
 		this.data = data;
 	}
-	  
-	
-
-
 
 }

@@ -1,6 +1,7 @@
 package co.edu.unbosque.model.persistence;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import co.edu.unbosque.model.Producto;
 
@@ -8,7 +9,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+
 
 public class ProductoDao implements DaoCrud {
 	private EntityManagerFactory emf;
@@ -217,6 +218,25 @@ public class ProductoDao implements DaoCrud {
 		}
 		return new ArrayList<Producto>();
 	}
+	
+	public List<Object[]> findBybestseller() {
+	    open();
+	    try {
+	        return em.createNativeQuery("SELECT * FROM Vista_ProductosMasVendidos").getResultList();
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	    } finally {
+	    	if (emf != null) {
+				emf.close();
+			}
+			if (em != null) {
+				em.close();
+			}
+	    }
+	    return null; // Se recomienda usar List en lugar de ArrayList en la declaración del tipo de retorno
+	}
+	
+	
 
 	@Override
 	public boolean update(int id, Object o) {
