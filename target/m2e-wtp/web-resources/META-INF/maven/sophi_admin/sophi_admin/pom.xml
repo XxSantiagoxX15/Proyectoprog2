@@ -9,12 +9,7 @@
 	<name>sophi_admin</name>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-junit-jupiter</artifactId>
-			<version>3.12.4</version>
-			<scope>test</scope>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
@@ -75,21 +70,7 @@
 			<artifactId>log4j-core</artifactId>
 			<version>2.17.1</version>
 		</dependency>
-		<!-- Jakarta EE API -->
-		<dependency>
-			<groupId>jakarta.platform</groupId>
-			<artifactId>jakarta.jakartaee-api</artifactId>
-			<version>9.0.0</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- Jakarta Faces API -->
-		<dependency>
-			<groupId>jakarta.faces</groupId>
-			<artifactId>jakarta.faces-api</artifactId>
-			<version>3.0.0</version>
-			<scope>provided</scope>
-		</dependency>
+	
 	</dependencies>
 	<build>
 		<plugins>
