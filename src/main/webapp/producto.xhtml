@@ -6,7 +6,7 @@
 
 <h:head>
 	<title>Crud Producto</title>
-	
+
 	<h:outputStylesheet library="primefaces"
 		name="themes/bootstrap/theme.css" />
 	<link rel="stylesheet" type="text/css" href="css/producto.css" />
@@ -16,14 +16,18 @@
 	<h:form id="form">
 		<p:toolbar class="navbar">
 			<p:toolbarGroup class="navbar">
-				<p:button value="New" icon="pi pi-plus"
-					outcome="insertarproducto.xhtml" styleClass="rounded-button ui-button-secondary"/>
+				<p:button value="Volver" icon="pi pi-plus" outcome="home.xhtml"
+					styleClass="rounded-button ui-button-secondary back-button-container" />
+				<p:button value="nuevo" icon="pi pi-plus"
+					outcome="insertarproducto.xhtml"
+					styleClass="rounded-button ui-button-secondary" />
 				<p:button value="Editar" outcome="editarproducto.xhtml"
-					styleClass="rounded-button ui-button-secondary"/>
+					styleClass="rounded-button ui-button-secondary" />
 				<p:button value="Eliminar" outcome="eliminarproducto.xhtml"
-					styleClass="rounded-button ui-button-secondary"/>
+					styleClass="rounded-button ui-button-secondary" />
 				<p:button value="Agregar inventario" outcome="inventario.xhtml"
-					styleClass="rounded-button ui-button-secondary"/>
+					styleClass="rounded-button ui-button-secondary" />
+
 			</p:toolbarGroup>
 		</p:toolbar>
 

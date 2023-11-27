@@ -71,13 +71,12 @@ public class ProductoBean implements Serializable {
 	}
 
 	public ArrayList<ProductoDTO> listarxinventario() {
-		if ("Inventariocant".equals(opcionesesta)) {
-			productos = adminProducto.listarxinventario(dto);
-			for (ProductoDTO producto : productos) {
-
-			}
-		}
-		return productos;
+	    System.out.println("Método listarxinventario llamado.");
+	    if ("Inventariocant".equals(opcionesesta)) {
+	        productos = adminProducto.listarxinventario(dto);
+	        // Resto del código...
+	    }
+	    return productos;
 	}
 
 	public DonutChartModel crearDonaProductosxagotar() {

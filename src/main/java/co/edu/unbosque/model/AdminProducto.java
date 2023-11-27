@@ -82,6 +82,8 @@ public class AdminProducto {
 	    return productosDTO;
 	}
 	
+	
+	
 	public ArrayList<ProductoDTO> listarxinventario(ProductoDTO productoDTO) {
 	    ArrayList<Producto> productos = dao.findByInventory();
 	    ArrayList<ProductoDTO> productosDTO = new ArrayList<>();

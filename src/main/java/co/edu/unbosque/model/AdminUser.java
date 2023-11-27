@@ -112,13 +112,16 @@ public class AdminUser {
 
 	}
 	public boolean insertar(UserDTO dto) {
-		String accion = "Se acaba de crear un nuevo usuario con correo  ";
-        String subject="Creacion de nuevo usuario en Shopy administrativo";
-		if (dao.create(DataMapper.fromDTO2Entity(dto)) != false) {
+	    String accion = "Se acaba de crear un nuevo usuario con correo  ";
+	    String subject = "Creacion de nuevo usuario en Shopy administrativo";
+	    
+	    if (dao.create(DataMapper.fromDTO2Entity(dto))) {
+	        // If insertion is successful, send email
+	        Correo(dto.getEmail(), accion, dto.getEmail(), subject);
+	        return true;
+	    }
 
-		}
-		 Correo(dto.getEmail(), accion, dto.getEmail(),subject);
-		return false;
+	    return false;
 	}
 
 	public void listar() {

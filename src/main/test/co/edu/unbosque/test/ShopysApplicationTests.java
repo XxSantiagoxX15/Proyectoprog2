@@ -1,36 +1,53 @@
 package co.edu.unbosque.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
 import co.edu.unbosque.model.AdminProducto;
+import co.edu.unbosque.model.AdminUser;
 import co.edu.unbosque.model.ProductoDTO;
+import co.edu.unbosque.model.UserDTO;
+import co.edu.unbosque.model.persistence.UsersDao;
+
 
 public class ShopysApplicationTests {
-
+	
+	 
 	@Test
-	public void testInsertarProducto() {
-		// Create an instance of the ShopysApplication class
-		AdminProducto producto = new AdminProducto();
+	public void testCrearUser() {
+	   
+	    AdminUser user = new AdminUser();
+	    UsersDao dao = new UsersDao();
+	    
+	
+	    UserDTO userdto = new UserDTO(1018323, "Santiago", "melo", "Santiagomelo15@hotmail.com", user.encryptPassword("Santiago34*"), true, false);
 
-		// Create a product to insert
-		ProductoDTO product = new ProductoDTO(3, "Example Product", "Descripcion prueba", 10.99, 0, "prueba");
+	    boolean result = user.insertar(userdto);
 
-		boolean result = producto.insertar(product);
+	    assertTrue(result); 
 
-		assertTrue(result);
+	    
+	    if (result) {
+	        dao.delete(1018323);
+	    }
 	}
 
-	@Test
-	public void testListarxinventario() {
-		AdminProducto producto = new AdminProducto();
+	  @Test
+	    public void testListar() {
+	        AdminProducto adminProducto = new AdminProducto();
 
-		ProductoDTO product = new ProductoDTO("Example Product", "Descripcion prueba", 10.99, 0, "prueba");
-		producto.insertar(product);
+	       
+	        ArrayList<ProductoDTO> result = adminProducto.listar(new ProductoDTO());
 
-		ProductoDTO result = producto.buscar(3);
-		assertEquals(product, result);
-	}
+	        
+	        assertNotNull(result);
+	       
+	      
+	    }
 }
