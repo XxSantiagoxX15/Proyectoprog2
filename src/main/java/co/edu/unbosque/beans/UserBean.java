@@ -26,10 +26,9 @@ public class UserBean {
 	private boolean administrador;
 	private boolean cta_bloqueada;
     private String mensaje;
-    private boolean mostrarDialogo = false;
-    private boolean credencialesIncorrectas = false;
 	private AdminUser adminUser;
    private UserDTO userDto;
+
    
    public UserBean() {
 	   adminUser = new AdminUser();
@@ -38,7 +37,7 @@ public class UserBean {
   
   
    
-   public void crear() {
+   public String crear() {
 	
        adminUser = new AdminUser();
 
@@ -51,9 +50,12 @@ public class UserBean {
     	   userDto = new UserDTO(id, nombre, apellido, email, adminUser.encryptPassword(user_password), administrador, false);
            adminUser.insertar(userDto);
            System.out.println("se insertó bien");
+         return mensaje="Se acaba de registrar un usuario";
+           
        }else {
     	   System.out.println("la contraseña no cumple con los requisitos");
        }
+	return null;
 
      
    }
@@ -61,7 +63,6 @@ public class UserBean {
 
    public void login() {
 	    String mensajeLogin = adminUser.login(email, user_password);
-
 
 	    if (mensajeLogin.equals("Inicio de sesión exitoso")) {
 	        try {
@@ -78,15 +79,14 @@ public class UserBean {
 	        mensaje = "La cuenta se encuentra bloqueada";
 	    } else if (mensajeLogin.equals("Credenciales incorrectas.") || mensajeLogin.startsWith("Inicio de sesión fallido.")) {
 	        mensaje = "Se equivocó con sus credenciales, algo está mal";
+	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", mensaje));
 	    } else {
 	        // Otros posibles mensajes de error
 	        mensaje = "Tuvo un error al iniciar sesión";
+	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", mensaje));
 	    }
 
-	  
 	    System.out.println("Estado de mensaje: " + mensaje);
-
-	   
 	}
    
    
@@ -169,27 +169,6 @@ public void setAdminUser(AdminUser adminUser) {
 
 
 
-public boolean isMostrarDialogo() {
-	return mostrarDialogo;
-}
-
-
-
-public void setMostrarDialogo(boolean mostrarDialogo) {
-	this.mostrarDialogo = mostrarDialogo;
-}
-
-
-
-public boolean isCredencialesIncorrectas() {
-	return credencialesIncorrectas;
-}
-
-
-
-public void setCredencialesIncorrectas(boolean credencialesIncorrectas) {
-	this.credencialesIncorrectas = credencialesIncorrectas;
-}
 
 
 

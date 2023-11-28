@@ -15,7 +15,7 @@
             <h2 class="welcome">Bienvenido</h2>
             <div class="input-container">
                 <p:inputText class="email" value="#{userBean.email}" placeholder="Ingresa tu Correo" />
-                <p:inputText class="pass" value="#{userBean.user_password}" placeholder="Ingresa tu Contraseña" />
+                <p:password class="pass" value="#{userBean.user_password}" placeholder="Ingresa tu Contraseña" toggleMask="true"  redisplay="true" />
             </div>
             <p:commandButton class="login" value="Login" action="#{userBean.login}" update="Login" styleClass="rounded-button ui-button-secondary" />
               <h:outputText value="#{userBean.mensaje}" id="Login" />           

@@ -73,7 +73,7 @@ public void setForma_pago(int forma_pago) {
 }
 @Override
 public String toString() {
-	return "CompraInventarioDTO [id=" + id + ", producto=" + producto + ", cantidad_adquirida=" + cantidad_adquirida
-			+ ", fecha=" + fecha + ", proveedor=" + proveedor + ", forma_pago=" + forma_pago + "]";
+	return  "El  producto es : " + producto + "con una cantidad de : " + cantidad_adquirida
+			+ "el dia : " + fecha + "al proveedor : " + proveedor + " y por medio de la siguiente forma de pago : " + forma_pago ;
 }	
 }
