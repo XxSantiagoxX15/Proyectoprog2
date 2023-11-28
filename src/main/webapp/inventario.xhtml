@@ -12,44 +12,33 @@
 	<link rel="stylesheet" type="text/css" href="css/inventario.css" />
 </h:head>
 <body>
-	<form>
-	<div class="container">
-	
-		<div>
-			<p:commandButton value="Volver" icon="pi pi-arrow-left"
-				action="producto.xhtml" styleClass="ui-button-success"
-				style="margin-right: .5rem" />
-		</div>
-		<div>
-			<p:selectOneMenu value="#{inventarioBean.productos}">
-				<f:selectItems value="#{productoBean.listar()}" var="producto"
-					itemValue="#{producto.id}" itemLabel="#{producto.nombre}" />
-			</p:selectOneMenu>
-		</div>
-		<div>
-			<p:inputText value="#{inventarioBean.cantidad_adquirida}" />
-		</div>
-		<div>
-			<p:selectOneMenu value="#{inventarioBean.proveedores}">
-				<f:selectItems value="#{proveedorBean.listar()}" var="proveedor"
-					itemValue="#{proveedor.id}" itemLabel="#{proveedor.nombre}" />
-			</p:selectOneMenu>
 
-			<p:selectOneMenu value="#{inventarioBean.forma_pagos}">
-				<f:selectItems value="#{forma_pagoBean.listar()}" var="formapago"
-					itemValue="#{formapago.id}" itemLabel="#{formapago.nombre}" />
-			</p:selectOneMenu>
-		</div>
-		<div>
-			<p:commandButton value="registrar"
-				action="#{inventarioBean.insertar()}" update="dto"
-				styleClass="rounded-button ui-button-secondary" autoUpdate="true" />
-		</div>
-		<div>
-			<h:outputText value="#{inventarioBean.dto}" id="dto" />
-		</div>
-		</div>
-	</form>
+	<h:form>
+	<p:commandButton value="Volver" icon="pi pi-arrow-left" action="producto.xhtml"
+            styleClass="ui-button-success" style="margin-right: .5rem"/>
+		<p:selectOneMenu value="#{inventarioBean.productos}">
+			<f:selectItems value="#{productoBean.listar()}" var="producto"
+				itemValue="#{producto.id}" itemLabel="#{producto.nombre}" />
+		</p:selectOneMenu>
+
+		<p:inputText value="#{inventarioBean.cantidad_adquirida}" />
+
+		<p:selectOneMenu value="#{inventarioBean.proveedores}">
+			<f:selectItems value="#{proveedorBean.listar()}" var="proveedor"
+				itemValue="#{proveedor.id}" itemLabel="#{proveedor.nombre}" />
+		</p:selectOneMenu>
+
+		<p:selectOneMenu value="#{inventarioBean.forma_pagos}">
+			<f:selectItems value="#{forma_pagoBean.listar()}" var="formapago"
+				itemValue="#{formapago.id}" itemLabel="#{formapago.nombre}" />
+		</p:selectOneMenu>
+
+		<p:commandButton value="registrar"
+			action="#{inventarioBean.insertar()}" update="dto"
+			styleClass="rounded-button ui-button-secondary" />
+		<h:outputText value="#{inventarioBean.dto}" id="dto" />
+	</h:form>
+
 
 </body>
 </html>

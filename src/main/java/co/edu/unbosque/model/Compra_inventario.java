@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name ="COMPRA_INVENTARIO")
+@Table(name ="compra_inventario")
 public class Compra_inventario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
