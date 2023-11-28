@@ -2,15 +2,18 @@ package co.edu.unbosque.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import co.edu.unbosque.model.AdminFormaPago;
-
 import co.edu.unbosque.model.Forma_pagoDTO;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
+/**
+ * This class represents a Forma_pagoBean, which is a managed bean used for
+ * handling form of payment related operations.
+ * It is responsible for managing the form of payment data, such as name,
+ * availability, and a list of form of payment DTOs.
+ */
 @Named
 @ViewScoped
 public class Forma_pagoBean implements Serializable {
@@ -21,15 +24,11 @@ public class Forma_pagoBean implements Serializable {
 	private Forma_pagoDTO dto;
 	private AdminFormaPago fp;
 
-	
-	
 	public Forma_pagoBean() {
 		dto = new Forma_pagoDTO();
 		fp = new AdminFormaPago();
 	}
 
-	
-	
 	@PostConstruct
 	public void init() {
 		listar();
@@ -37,10 +36,6 @@ public class Forma_pagoBean implements Serializable {
 
 	}
 
-	
-	
-	
-	
 	public ArrayList<Forma_pagoDTO> listar() {
 		formapago = fp.listar(dto);
 		if (formapago != null) {
@@ -57,32 +52,23 @@ public class Forma_pagoBean implements Serializable {
 		return dto;
 
 	}
-	
 
 	public String getNombre() {
 		return nombre;
 	}
-	
-	
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
 
 	public boolean isDisponible() {
 		return disponible;
 	}
-	
-	
 
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
 	}
 
-	
-	
 	public ArrayList<Forma_pagoDTO> getFormapago() {
 		return formapago;
 	}
@@ -90,26 +76,18 @@ public class Forma_pagoBean implements Serializable {
 	public void setFormapago(ArrayList<Forma_pagoDTO> formapago) {
 		this.formapago = formapago;
 	}
-	
-	
 
 	public Forma_pagoDTO getDto() {
 		return dto;
 	}
-	
-	
 
 	public void setDto(Forma_pagoDTO dto) {
 		this.dto = dto;
 	}
 
-	
-	
 	public AdminFormaPago getFp() {
 		return fp;
 	}
-	
-	
 
 	public void setFp(AdminFormaPago fp) {
 		this.fp = fp;

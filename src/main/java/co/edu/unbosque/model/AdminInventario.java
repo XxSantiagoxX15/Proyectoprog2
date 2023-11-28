@@ -18,6 +18,12 @@ import co.edu.unbosque.model.persistence.CompraInventarioDao;
 import co.edu.unbosque.model.persistence.ProductoDao;
 import jakarta.faces.context.FacesContext;
 
+/**
+ * The AdminInventario class represents an administrator of the inventory
+ * system.
+ * It provides methods for managing the inventory, such as adding inventory and
+ * sending email notifications.
+ */
 public class AdminInventario {
 	private CompraInventarioDao dao;
 	private ProductoDao daoproducto;

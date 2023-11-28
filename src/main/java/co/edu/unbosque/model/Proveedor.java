@@ -6,6 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * Represents a supplier in the system.
+ * Each supplier has an id, name, email, and telephone number.
+ */
 @Entity
 @Table(name = "PROVEEDOR")
 public class Proveedor {

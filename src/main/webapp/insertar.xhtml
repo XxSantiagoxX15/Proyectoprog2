@@ -1,45 +1,67 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:p="http://primefaces.org/ui"
+>
+  <h:head>
+    <title>Registrar usuario</title>
+    <link rel="stylesheet" type="text/css" href="css/insertar.css" />
+  </h:head>
+  <body>
+    <div class="register-container">
+      <h:form>
+        <h2 class="create">Creación de Usuario</h2>
+        <p:inputText
+          styleClass="input-field"
+          value="#{userBean.id}"
+          placeholder="Id"
+        />
+        <p:inputText
+          styleClass="input-field"
+          value="#{userBean.nombre}"
+          placeholder="Ingresa tu Nombre"
+        />
+        <p:inputText
+          styleClass="input-field"
+          value="#{userBean.apellido}"
+          placeholder="Ingresa tu Apellido"
+        />
+        <p:inputText
+          styleClass="input-field"
+          value="#{userBean.email}"
+          placeholder="Ingresa tu Correo"
+        />
+        <p:inputText
+          styleClass="input-field"
+          value="#{userBean.user_password}"
+          placeholder="Ingresa tu Password"
+        />
+        <p:selectOneMenu styleClass="input-field" value="#{userBean.admin}">
+          <f:selectItem itemLabel="Seleccione un rol" itemValue="" />
+          <f:selectItem itemLabel="Si" itemValue="Si" />
+          <f:selectItem itemLabel="No" itemValue="No" />
+        </p:selectOneMenu>
 
-<h:head>
-	<title>Registrar usuario</title>
-	<link rel="stylesheet" type="text/css" href="css/insertar.css" />
-</h:head>
-<body>
-	<div class="register-container">
-		<h:form>
-			<h2 class="create">Creación de Usuario</h2>
-			<p:inputText styleClass="input-field" value="#{userBean.id}"
-				placeholder="Id" />
-			<p:inputText styleClass="input-field" value="#{userBean.nombre}"
-				placeholder="Ingresa tu Nombre" />
-			<p:inputText styleClass="input-field" value="#{userBean.apellido}"
-				placeholder="Ingresa tu Apellido" />
-			<p:inputText styleClass="input-field" value="#{userBean.email}"
-				placeholder="Ingresa tu Correo" />
-			<p:inputText styleClass="input-field"
-				value="#{userBean.user_password}" placeholder="Ingresa tu Password" />
-			<p:selectOneMenu styleClass="input-field" value="#{userBean.admin}">
-				<f:selectItem itemLabel="Seleccione un rol" itemValue="" />
-				<f:selectItem itemLabel="Si" itemValue="Si" />
-				<f:selectItem itemLabel="No" itemValue="No" />
-			</p:selectOneMenu>
+        <h:outputText value="#{userBean.mensaje}" id="userDto" />
 
-			<h:outputText value="#{userBean.mensaje}" id="userDto" />
+        <p:commandButton
+          value="Registrar"
+          action="#{userBean.crear}"
+          update="userDto"
+          styleClass="rounded-button ui-button-secondary"
+        />
 
-			<p:commandButton value="Registrar" action="#{userBean.crear}"
-				update="userDto" styleClass="rounded-button ui-button-secondary" />
-
-			<div class="back-button-container">
-				<p:button outcome="index.xhtml" value="Volver a Inicio"
-					styleClass="rounded-button ui-button-secondary back-button" />
-			</div>
-		</h:form>
-	</div>
-</body>
+        <div class="back-button-container">
+          <p:button
+            outcome="index.xhtml"
+            value="Volver a Inicio"
+            styleClass="rounded-button ui-button-secondary back-button"
+          />
+        </div>
+      </h:form>
+    </div>
+  </body>
 </html>

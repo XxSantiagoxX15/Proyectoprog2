@@ -1,12 +1,22 @@
+/**
+ * CSS styles for the file editarproducto.css
+ * 
+ * This file contains styles for editing a product in a web application.
+ * It includes styles for buttons, container, and center alignment.
+ */
 /* insertar.css */
-/* ... (otros estilos) ... */
 
-.rounded-button,
+.body {
+    background-color: #7FFFD4;
+    /* Código de color para el agua marina */
+}
+
 .ui-button-secondary {
     width: 100%;
     border-radius: 5px;
     margin-top: 10px;
-    margin-bottom: 10px; /* Agregado para espacio inferior */
+    margin-bottom: 10px;
+    /* Agregado para espacio inferior */
 }
 
 .back-button-container {
@@ -15,17 +25,17 @@
 
 .register-container .rounded-button,
 .register-container .ui-button-secondary {
-    margin-bottom: 15px; /* Nuevo margen inferior para los botones en register-container */
+    margin-bottom: 15px;
+    /* Nuevo margen inferior para los botones en register-container */
 }
-/* insertar.css */
-/* ... (otros estilos) ... */
 
 .rounded-button,
 .ui-button-secondary {
     width: 100%;
     border-radius: 5px;
     margin-top: 10px;
-    margin-bottom: 10px; /* Agregado para espacio inferior */
+    margin-bottom: 10px;
+    /* Agregado para espacio inferior */
 }
 
 .back-button-container {
@@ -34,12 +44,14 @@
 
 .register-container .rounded-button,
 .register-container .ui-button-secondary {
-    margin-bottom: 15px; /* Nuevo margen inferior para los botones en register-container */
+    margin-bottom: 15px;
+    /* Nuevo margen inferior para los botones en register-container */
 }
 
 .center {
     text-align: center;
 }
+
 /* editarproducto.css */
 .center {
     text-align: center;

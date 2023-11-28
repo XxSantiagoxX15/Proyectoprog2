@@ -1,36 +1,58 @@
-/* home.css */
+/**
+ * FILEPATH: /Users/steven/Documents/programacion2_santi/Proyectoprog2/src/main/webapp/css/home.css
+ * 
+ * home.css
+ * 
+ * Stylesheet for the home page.
+ */
 
 body {
+    /* Set background color */
     background-color: #b3e5e5;
+    /* Set font family */
     font-family: Arial, sans-serif;
+    /* Remove default margin and padding */
     margin: 0;
     padding: 0;
+    /* Center content vertically and horizontally */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    /* Set height to 100% of viewport height */
     height: 100vh;
 }
 
 h1 {
+    /* Set text color */
     color: #333;
 }
 
 div {
+    /* Add margin to top */
     margin-top: 20px;
 }
 
 .button {
+    /* Set background color */
     background-color: #3498db;
+    /* Set text color */
     color: #ffffff;
+    /* Add padding */
     padding: 10px 20px;
+    /* Remove border */
     border: none;
+    /* Add border radius */
     border-radius: 5px;
+    /* Set cursor to pointer */
     cursor: pointer;
+    /* Add margin to right */
     margin-right: 10px;
+    /* Set font size */
     font-size: 16px;
 }
 
 .button:hover {
+    /* Change background color on hover */
     background-color: #2980b9;
 }

@@ -21,6 +21,11 @@ import org.apache.logging.log4j.Logger;
 import co.edu.unbosque.model.persistence.ProductoDao;
 import jakarta.faces.context.FacesContext;
 
+/**
+ * The AdminProducto class represents an administrator for managing products.
+ * It provides methods for inserting, editing, and deleting products, as well as
+ * retrieving lists of products based on different criteria.
+ */
 public class AdminProducto {
 	private ProductoDao dao;
 

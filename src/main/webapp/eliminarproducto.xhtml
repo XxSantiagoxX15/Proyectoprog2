@@ -1,37 +1,46 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:p="http://primefaces.org/ui"
+>
+  <h:head>
+    <title>Eliminar Producto</title>
+    <link rel="stylesheet" type="text/css" href="css/eliminar.css" />
+  </h:head>
 
-<h:head>
-	<title>Eliminar Producto</title>
-	<link rel="stylesheet" type="text/css" href="css/eliminar.css" />
-</h:head>
+  <body>
+    <h:form>
+      <h:panelGrid columns="2">
+        <h:outputLabel for="productoMenu" value="Seleccionar Producto:" />
+        <p:selectOneMenu id="productoMenu" value="#{productoBean.id}">
+          <f:selectItems
+            value="#{productoBean.listar()}"
+            var="producto"
+            itemValue="#{producto.id}"
+            itemLabel="#{producto.nombre}"
+          />
+        </p:selectOneMenu>
 
-<body>
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel for="productoMenu" value="Seleccionar Producto:" />
-			<p:selectOneMenu id="productoMenu" value="#{productoBean.id}">
-				<f:selectItems value="#{productoBean.listar()}" var="producto"
-					itemValue="#{producto.id}" itemLabel="#{producto.nombre}" />
-			</p:selectOneMenu>
+        <h:panelGroup />
 
-			<h:panelGroup />
+        <p:commandButton
+          value="Eliminar"
+          action="#{productoBean.eliminar}"
+          update="productoMenu, Dto"
+          styleClass="rounded-button ui-button-secondary"
+        />
+        <p:commandButton
+          value="Volver"
+          icon="pi pi-arrow-left"
+          action="producto.xhtml"
+          styleClass="rounded-button ui-button-secondary"
+        />
+      </h:panelGrid>
 
-			<p:commandButton value="Eliminar" action="#{productoBean.eliminar}"
-				update="productoMenu, Dto"
-				styleClass="rounded-button ui-button-secondary" />
-			<p:commandButton value="Volver" icon="pi pi-arrow-left"
-				action="producto.xhtml"
-				styleClass="rounded-button ui-button-secondary" />
-		</h:panelGrid>
-
-		<h:outputText value="#{productoBean.dto}" id="Dto" />
-	</h:form>
-</body>
-
+      <h:outputText value="#{productoBean.dto}" id="Dto" />
+    </h:form>
+  </body>
 </html>

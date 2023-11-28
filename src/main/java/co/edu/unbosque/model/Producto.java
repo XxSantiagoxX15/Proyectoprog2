@@ -8,6 +8,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * Represents a product in the inventory system.
+ */
 @Entity
 @Table(name = "PRODUCTO")
 public class Producto implements Serializable {

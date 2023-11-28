@@ -1,5 +1,10 @@
 package co.edu.unbosque.model;
 
+/**
+ * This class represents a Forma_pagoDTO object.
+ * It contains information about the id, nombre, and disponibilidad of a payment
+ * method.
+ */
 public class Forma_pagoDTO {
 	private int id;
 	private String nombre;

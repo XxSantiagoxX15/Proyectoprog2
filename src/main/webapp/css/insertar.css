@@ -1,6 +1,11 @@
-/* insertar.css */
+/**
+ * insertar.css
+ * 
+ * Este archivo contiene estilos CSS para la página de inserción.
+ */
 
 body {
+    /* Estilos para el cuerpo de la página */
     background-color: #b3e5e5;
     font-family: Arial, sans-serif;
     margin: 0;
@@ -12,6 +17,7 @@ body {
 }
 
 .register-container {
+    /* Estilos para el contenedor de registro */
     background-color: rgba(184, 193, 193, 0.8);
     padding: 20px;
     border-radius: 8px;
@@ -21,26 +27,31 @@ body {
 }
 
 .create {
+    /* Estilos para el texto "create" */
     color: #ffffff;
 }
 
 .input-field {
+    /* Estilos para los campos de entrada */
     width: 100%;
     margin-bottom: 10px;
 }
 
 .rounded-button,
 .ui-button-secondary {
+    /* Estilos para los botones redondeados */
     width: 100%;
     border-radius: 5px;
     margin-top: 10px;
 }
 
 .ui-button-secondary {
+    /* Estilos para el botón secundario */
     background-color: #2ecc71;
     color: #ffffff;
 }
 
 .back-button-container {
+    /* Estilos para el contenedor del botón de retroceso */
     margin-top: 10px;
 }

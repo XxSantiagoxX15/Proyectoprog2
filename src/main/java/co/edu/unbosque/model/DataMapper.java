@@ -1,5 +1,13 @@
 package co.edu.unbosque.model;
 
+/**
+ * The DataMapper class provides static methods for converting between DTOs
+ * (Data Transfer Objects) and entities.
+ * It contains methods for converting UserDTO to Usuarios_drogueria, ProductoDTO
+ * to Producto, ProveedorDTO to Proveedor,
+ * Forma_pagoDTO to Forma_pago, Detalle_facturaDTO to Detalle_factura, and
+ * CompraInventarioDTO to Compra_inventario.
+ */
 public class DataMapper {
 	public static Usuarios_drogueria fromDTO2Entity(UserDTO dto) {
 		Usuarios_drogueria u = new Usuarios_drogueria();

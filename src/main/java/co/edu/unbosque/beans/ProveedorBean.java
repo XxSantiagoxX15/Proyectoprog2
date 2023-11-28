@@ -11,6 +11,12 @@ import jakarta.enterprise.context.RequestScoped;
 
 import jakarta.inject.Named;
 
+/**
+ * The ProveedorBean class represents a managed bean for handling Proveedor
+ * related operations.
+ * It is responsible for managing the data and actions related to Proveedor
+ * entities.
+ */
 @Named
 @RequestScoped
 public class ProveedorBean implements Serializable {

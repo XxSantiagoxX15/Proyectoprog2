@@ -17,6 +17,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import co.edu.unbosque.model.persistence.UsersDao;
 
+/**
+ * The AdminUser class represents an administrative user in the system.
+ * It provides methods for password encryption, password validation, sending
+ * emails,
+ * inserting new users, listing users, logging in, and searching for users.
+ */
 public class AdminUser {
 	private UsersDao dao;
 

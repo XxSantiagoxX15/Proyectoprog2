@@ -1,4 +1,13 @@
+/**
+ * CSS file for the estadistica page.
+ * 
+ * FILEPATH: /Users/steven/Documents/programacion2_santi/Proyectoprog2/src/main/webapp/css/estadistica.css
+ * 
+ * This file contains the styles for the estadistica page, including the layout, colors, and typography.
+ * It also includes additional styles for specific elements such as forms and buttons.
+ */
 @charset "UTF-8";
+
 body {
     background-color: #b3e5e5;
     font-family: Arial, sans-serif;
@@ -87,7 +96,8 @@ body {
     width: 100%;
     border-radius: 5px;
     margin-top: 10px;
-    margin-bottom: 10px; /* Agregado para espacio inferior */
+    margin-bottom: 10px;
+    /* Agregado para espacio inferior */
 }
 
 .back-button-container {
@@ -96,5 +106,6 @@ body {
 
 .register-container .rounded-button,
 .register-container .ui-button-secondary {
-    margin-bottom: 15px; /* Nuevo margen inferior para los botones en register-container */
+    margin-bottom: 15px;
+    /* Nuevo margen inferior para los botones en register-container */
 }

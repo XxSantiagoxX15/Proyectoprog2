@@ -23,6 +23,12 @@ import jakarta.faces.context.FacesContext;
 
 import jakarta.inject.Named;
 
+/**
+ * This class represents a ProductoBean, which is a managed bean used for
+ * managing product data.
+ * It contains properties and methods for adding, editing, and deleting
+ * products, as well as generating charts.
+ */
 @Named
 @ViewScoped
 public class ProductoBean implements Serializable {

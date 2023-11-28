@@ -7,6 +7,12 @@ import org.apache.logging.log4j.Logger;
 
 import co.edu.unbosque.model.persistence.ProveedorDao;
 
+/**
+ * Esta clase representa un administrador de proveedores.
+ * AdminProveedor se encarga de realizar operaciones relacionadas con
+ * proveedores,
+ * como listar, buscar y agregar proveedores.
+ */
 public class AdminProveedor {
 	private ProveedorDao dao;
 	private static final Logger logger = LogManager.getLogger(AdminProveedor.class);

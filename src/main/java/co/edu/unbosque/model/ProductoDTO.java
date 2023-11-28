@@ -2,6 +2,11 @@ package co.edu.unbosque.model;
 
 import java.math.BigInteger;
 
+/**
+ * The ProductoDTO class represents a product data transfer object.
+ * It contains information about a product, such as its id, name, description,
+ * price, inventory quantity, and category.
+ */
 public class ProductoDTO {
 	private int id;
 	private String nombre;

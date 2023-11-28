@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * Represents a user in the drogueria system.
+ */
 @Entity
 @Table(name = "USUARIOS_DROGUERIA")
 public class Usuarios_drogueria {

@@ -9,6 +9,13 @@ import jakarta.persistence.Id;
 
 import jakarta.persistence.Table;
 
+/**
+ * Represents a purchase in the inventory.
+ * 
+ * This class contains information about a purchase made in the inventory,
+ * including the product, quantity acquired,
+ * date of purchase, supplier, and payment method.
+ */
 @Entity
 @Table(name = "COMPRA_INVENTARIO")
 public class Compra_inventario {

@@ -1,5 +1,10 @@
 package co.edu.unbosque.model;
 
+/**
+ * This class represents a User Data Transfer Object (DTO).
+ * It contains the information related to a user, such as their id, name, email,
+ * password, and account status.
+ */
 public class UserDTO {
 	private int id;
 	private String nombre;

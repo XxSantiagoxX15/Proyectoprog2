@@ -1,5 +1,12 @@
-/* inventario.css */
-@charset "UTF-8";
+/**
+ * inventario.css
+ * 
+ * Este archivo contiene estilos CSS para la página de inventario.
+ */
+
+/**
+ * Estilos generales del cuerpo del documento.
+ */
 body {
     background-color: #b3e5e5;
     font-family: Arial, sans-serif;
@@ -11,17 +18,26 @@ body {
     min-height: 100vh;
 }
 
+/**
+ * Estilos del formulario.
+ */
 form {
     text-align: left;
     width: 50%;
 }
 
+/**
+ * Estilos para centrar elementos.
+ */
 .center {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/**
+ * Estilos para botones redondeados.
+ */
 .rounded-button,
 .ui-button-secondary {
     width: 100%;
@@ -30,6 +46,9 @@ form {
     margin-bottom: 10px;
 }
 
+/**
+ * Estilos para botones de éxito.
+ */
 .ui-button-success {
     background-color: #28a745;
     color: #fff;
@@ -44,6 +63,9 @@ form {
     background-color: #218838;
 }
 
+/**
+ * Estilos para campos de formulario.
+ */
 .field {
     margin-bottom: 15px;
 }
@@ -62,11 +84,17 @@ form {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+/**
+ * Estilos para el contenedor principal.
+ */
 .container {
-    width: 50%; /* Puedes ajustar el ancho según tus necesidades */
+    width: 50%;
+    /* Puedes ajustar el ancho según tus necesidades */
 }
 
 .container div {
     text-align: center;
-    margin-bottom: 10px; /* Espaciado entre los divs */
+    margin-bottom: 10px;
+    /* Espaciado entre los divs */
 }

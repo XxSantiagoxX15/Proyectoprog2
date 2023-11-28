@@ -3,19 +3,18 @@ package co.edu.unbosque.beans;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import co.edu.unbosque.model.AdminFormaPago;
 import co.edu.unbosque.model.AdminInventario;
 import co.edu.unbosque.model.AdminProducto;
-import co.edu.unbosque.model.AdminProveedor;
-
 import co.edu.unbosque.model.CompraInventarioDTO;
-import co.edu.unbosque.model.Forma_pagoDTO;
 import co.edu.unbosque.model.ProductoDTO;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
-
 import jakarta.inject.Named;
 
+/**
+ * This class represents a bean for managing inventory.
+ * It is used to store and manipulate information related to inventory items.
+ */
 @Named
 @RequestScoped
 public class InventarioBean implements Serializable {

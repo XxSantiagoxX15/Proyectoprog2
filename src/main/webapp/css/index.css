@@ -1,56 +1,85 @@
-/* index.css */
+/**
+ * FILEPATH: /Users/steven/Documents/programacion2_santi/Proyectoprog2/src/main/webapp/css/index.css
+ * 
+ * index.css
+ * 
+ * Stylesheet for the index page of the web application.
+ */
 
 body {
+    /* Sets the background color of the body */
     background-color: #b3e5e5;
+    /* Sets the font family for the body text */
     font-family: Arial, sans-serif;
+    /* Removes the default margin and padding of the body */
     margin: 0;
     padding: 0;
+    /* Centers the content vertically and horizontally */
     display: flex;
     justify-content: center;
     align-items: center;
+    /* Sets the height of the body to 100% of the viewport height */
     height: 100vh;
 }
 
 .login-container {
+    /* Sets the background color of the login container */
     background-color: #b8c1c1;
+    /* Adds padding to the login container */
     padding: 20px;
+    /* Adds rounded corners to the login container */
     border-radius: 8px;
+    /* Adds a box shadow to the login container */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Sets the width of the login container */
     width: 300px;
+    /* Centers the text inside the login container */
     text-align: center;
 }
 
 .input-container {
-    margin-bottom: 15px; 
+    /* Adds margin at the bottom of the input container */
+    margin-bottom: 15px;
 }
 
 .email,
 .pass {
+    /* Sets the width of the email and password inputs to 100% */
     width: 100%;
+    /* Adds margin at the bottom of the email and password inputs */
     margin-bottom: 10px;
 }
 
 .rounded-button,
 .button {
+    /* Sets the width of the rounded button and regular button to 100% */
     width: 100%;
+    /* Adds rounded corners to the rounded button and regular button */
     border-radius: 5px;
+    /* Adds margin at the bottom of the rounded button and regular button */
     margin-bottom: 10px;
 }
 
 .ui-button-secondary {
+    /* Sets the background color of the secondary button */
     background-color: #2ecc71;
+    /* Sets the text color of the secondary button */
     color: #ffffff;
 }
 
 .button {
+    /* Sets the background color of the regular button */
     background-color: #eaf7fd;
+    /* Sets the text color of the regular button */
     color: #ffffff;
 }
 
 .welcome {
+    /* Sets the text color of the welcome message */
     color: #ffffff;
 }
 
 .button-container {
-    margin-top: 10px; 
+    /* Adds margin at the top of the button container */
+    margin-top: 10px;
 }

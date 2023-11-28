@@ -3,6 +3,11 @@ package co.edu.unbosque.model;
 import java.time.LocalDate;
 import java.util.Date;
 
+/**
+ * This class represents a data transfer object for a purchase in the inventory.
+ * It contains information about the product, quantity acquired, date, supplier,
+ * and payment method.
+ */
 public class CompraInventarioDTO {
 	private int id;
 	private int producto;

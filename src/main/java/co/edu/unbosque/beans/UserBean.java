@@ -12,6 +12,10 @@ import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
+/**
+ * This class represents a UserBean object, which is used for managing user data
+ * and operations.
+ */
 @Named
 @RequestScoped
 public class UserBean {
