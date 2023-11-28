@@ -8,9 +8,9 @@ public class UserDTO {
 	private String user_password;
 	private boolean administrador;
 	private boolean cta_bloqueada;
-	
-	public UserDTO(int id, String nombre, String apellido, String email, String user_password,
-			boolean administrador, boolean cta_bloqueada) {
+
+	public UserDTO(int id, String nombre, String apellido, String email, String user_password, boolean administrador,
+			boolean cta_bloqueada) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -19,9 +19,10 @@ public class UserDTO {
 		this.administrador = administrador;
 		this.cta_bloqueada = cta_bloqueada;
 	}
-	public UserDTO( String nombre, String apellido, String email, String user_password,
-			boolean administrador, boolean cta_bloqueada) {
-		
+
+	public UserDTO(String nombre, String apellido, String email, String user_password, boolean administrador,
+			boolean cta_bloqueada) {
+
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;

@@ -22,7 +22,7 @@ public class DataMapper {
 
 	public static Producto fromDTO2Entityp(ProductoDTO dto) {
 		Producto p = new Producto();
-        p.setId(dto.getId());
+		p.setId(dto.getId());
 		p.setNombre(dto.getNombre());
 		p.setDescripcion(dto.getDescripcion());
 		p.setPrecio(dto.getPrecio());
@@ -33,15 +33,14 @@ public class DataMapper {
 	}
 
 	public static ProductoDTO fromEntity2DTOp(Producto p) {
-		ProductoDTO pdto = new ProductoDTO(p.getId(),p.getNombre(), p.getDescripcion(), p.getPrecio(), p.getCantidad_inventario(),
-				p.getCategoria());
+		ProductoDTO pdto = new ProductoDTO(p.getId(), p.getNombre(), p.getDescripcion(), p.getPrecio(),
+				p.getCantidad_inventario(), p.getCategoria());
 		return pdto;
 	}
 
-
 	public static Proveedor fromDTO2Entityp(ProveedorDTO dto) {
 		Proveedor p = new Proveedor();
-        p.setId(dto.getId());
+		p.setId(dto.getId());
 		p.setNombre(dto.getNombre());
 		p.setEmail(dto.getEmail());
 		p.setTelefono(dto.getTelefono());
@@ -50,14 +49,13 @@ public class DataMapper {
 	}
 
 	public static ProveedorDTO fromEntity2DTOp(Proveedor p) {
-		ProveedorDTO pdto = new ProveedorDTO(p.getId(),p.getNombre(), p.getEmail(), p.getTelefono());
+		ProveedorDTO pdto = new ProveedorDTO(p.getId(), p.getNombre(), p.getEmail(), p.getTelefono());
 		return pdto;
 	}
 
-
 	public static Forma_pago fromDTO2EntityF(Forma_pagoDTO dto) {
 		Forma_pago f = new Forma_pago();
-        f.setId(dto.getId());
+		f.setId(dto.getId());
 		f.setNombre(dto.getNombre());
 		f.setDisponible(dto.isDisponible());
 
@@ -65,13 +63,10 @@ public class DataMapper {
 	}
 
 	public static Forma_pagoDTO fromEntity2DTOF(Forma_pago f) {
-		Forma_pagoDTO fdto = new Forma_pagoDTO(f.getId(),f.getNombre(), f.isDisponible());
+		Forma_pagoDTO fdto = new Forma_pagoDTO(f.getId(), f.getNombre(), f.isDisponible());
 		return fdto;
 	}
 
-
-
-	
 	public static Detalle_factura fromDTO2EntityDe(Detalle_facturaDTO dto) {
 		Detalle_factura d = new Detalle_factura();
 
@@ -83,13 +78,14 @@ public class DataMapper {
 	}
 
 	public static Detalle_facturaDTO fromEntity2DTODe(Detalle_factura d) {
-		Detalle_facturaDTO ddto = new Detalle_facturaDTO(d.getFactura(),d.getProducto(),d.getCantidad(),d.getSubtotal_producto());
+		Detalle_facturaDTO ddto = new Detalle_facturaDTO(d.getFactura(), d.getProducto(), d.getCantidad(),
+				d.getSubtotal_producto());
 		return ddto;
 	}
+
 	public static Compra_inventario fromDTO2Entityco(CompraInventarioDTO dto) {
 		Compra_inventario c = new Compra_inventario();
 
-		
 		c.setProducto(dto.getProducto());
 		c.setCantidad_adquirida(dto.getCantidad_adquirida());
 		c.setFecha(dto.getFecha());
@@ -99,7 +95,8 @@ public class DataMapper {
 	}
 
 	public static CompraInventarioDTO fromEntity2DTOco(Compra_inventario c) {
-		CompraInventarioDTO cdto = new CompraInventarioDTO(c.getProducto(),c.getCantidad_adquirida(),c.getFecha(),c.getProveedor(),c.getForma_pago());
+		CompraInventarioDTO cdto = new CompraInventarioDTO(c.getProducto(), c.getCantidad_adquirida(), c.getFecha(),
+				c.getProveedor(), c.getForma_pago());
 		return cdto;
 	}
 }

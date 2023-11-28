@@ -25,12 +25,13 @@ public class AdminProducto {
 	private ProductoDao dao;
 
 	private static final Logger logger = LogManager.getLogger(AdminProducto.class);
+
 	public AdminProducto() {
 		dao = new ProductoDao();
-		
+
 	}
 
-	public void correo(String correo, String accion, String nombre,String subject) {
+	public void correo(String correo, String accion, String nombre, String subject) {
 		String host = "smtp.gmail.com";
 		final String user = "sophidrogueria@gmail.com";// change accordingly
 		final String password = "smyg onjr muay uwfa";// change accordingly
@@ -52,13 +53,12 @@ public class AdminProducto {
 
 		// Compose the message
 		try {
-			
+
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(user));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setSubject(subject);
-			message.setText(accion +nombre);
-			
+			message.setText(accion + nombre);
 
 			// send the message
 			Transport.send(message);
@@ -69,112 +69,110 @@ public class AdminProducto {
 		}
 
 	}
+
 	public ArrayList<ProductoDTO> listar(ProductoDTO productoDTO) {
-	    ArrayList<Producto> productos = dao.findAll();
-	    ArrayList<ProductoDTO> productosDTO = new ArrayList<>();
-	    
-	    for (Producto producto : productos) {
+		ArrayList<Producto> productos = dao.findAll();
+		ArrayList<ProductoDTO> productosDTO = new ArrayList<>();
 
-	        ProductoDTO dto= DataMapper.fromEntity2DTOp(producto);
-	        productosDTO.add(dto);
-	    }
-	    
-	    return productosDTO;
+		for (Producto producto : productos) {
+
+			ProductoDTO dto = DataMapper.fromEntity2DTOp(producto);
+			productosDTO.add(dto);
+		}
+
+		return productosDTO;
 	}
-	
-	
-	
+
 	public ArrayList<ProductoDTO> listarxinventario(ProductoDTO productoDTO) {
-	    ArrayList<Producto> productos = dao.findByInventory();
-	    ArrayList<ProductoDTO> productosDTO = new ArrayList<>();
-	    
-	    for (Producto producto : productos) {
+		ArrayList<Producto> productos = dao.findByInventory();
+		ArrayList<ProductoDTO> productosDTO = new ArrayList<>();
 
-	        ProductoDTO dto= DataMapper.fromEntity2DTOp(producto);
-	        productosDTO.add(dto);
-	    }
-	    
-	    return productosDTO;
+		for (Producto producto : productos) {
+
+			ProductoDTO dto = DataMapper.fromEntity2DTOp(producto);
+			productosDTO.add(dto);
+		}
+
+		return productosDTO;
 	}
-	
-
 
 	public List<ProductoDTO> listarxMasvendidos(ProductoDTO productoDTO) {
-	    List<Object[]> productos = dao.findBybestseller();
-	    List<ProductoDTO> productosDTO = new ArrayList<>();
-	    
-	    for (Object[] productoArray : productos) {
-	       
-	    	
-	        String nombre = (String) productoArray[0];
-	 
-	       
+		List<Object[]> productos = dao.findBybestseller();
+		List<ProductoDTO> productosDTO = new ArrayList<>();
 
-	        BigInteger cantidad = (BigInteger) productoArray[2];
+		for (Object[] productoArray : productos) {
 
-	        ProductoDTO dto = new ProductoDTO( nombre,cantidad);
-	        productosDTO.add(dto);
-	    }
-	    
-	    return productosDTO;
+			String nombre = (String) productoArray[0];
+
+			BigInteger cantidad = (BigInteger) productoArray[2];
+
+			ProductoDTO dto = new ProductoDTO(nombre, cantidad);
+			productosDTO.add(dto);
+		}
+
+		return productosDTO;
 	}
+
 	public boolean insertar(ProductoDTO dto) {
-		String accion="Se acaba de insertar un nuevo producto por el usuario :";
-		String subject="Se acaba de insertar un nuevo producto a la drogueria";
-		String usuarioCorreo = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioCorreo");
-	
-		
+		String accion = "Se acaba de insertar un nuevo producto por el usuario :";
+		String subject = "Se acaba de insertar un nuevo producto a la drogueria";
+		String usuarioCorreo = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.get("usuarioCorreo");
+
 		dao.create(DataMapper.fromDTO2Entityp(dto));
-		correo(usuarioCorreo,accion,usuarioCorreo,subject);
+		correo(usuarioCorreo, accion, usuarioCorreo, subject);
 		return true;
 	}
-	
-	public ProductoDTO buscar(int id) {
-	    ProductoDTO producto =DataMapper.fromEntity2DTOp(dao.findOne(id));
 
-	    if (producto != null) {
-	       System.out.println("si pasa aca");
-	        return producto;
-	    } else {
-	      System.out.println("Es nullo");
-	        return null;
-	    }
+	public ProductoDTO buscar(int id) {
+		ProductoDTO producto = DataMapper.fromEntity2DTOp(dao.findOne(id));
+
+		if (producto != null) {
+			System.out.println("si pasa aca");
+			return producto;
+		} else {
+			System.out.println("Es nullo");
+			return null;
+		}
 	}
-	
-	public boolean editar(int id,ProductoDTO dto) {
-		
-		if(dao.update(id, DataMapper.fromDTO2Entityp(dto))) {
-			String accion="Se acaba de editar un nuevo producto por el usuario :";
-			String subject="Se acaba de editar un producto a la drogueria";
-			String usuarioCorreo = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioCorreo");
-			correo(usuarioCorreo,accion,usuarioCorreo,subject);
+
+	public boolean editar(int id, ProductoDTO dto) {
+
+		if (dao.update(id, DataMapper.fromDTO2Entityp(dto))) {
+			String accion = "Se acaba de editar un nuevo producto por el usuario :";
+			String subject = "Se acaba de editar un producto a la drogueria";
+			String usuarioCorreo = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+					.get("usuarioCorreo");
+			correo(usuarioCorreo, accion, usuarioCorreo, subject);
 			return true;
-		}else {
+		} else {
 			System.out.println("no edita");
 			return false;
 		}
-		
-		
-	}	public boolean editarInventario(int id,ProductoDTO dto) {
-		
-		if(dao.update(id, DataMapper.fromDTO2Entityp(dto))) {
-			
+
+	}
+
+	public boolean editarInventario(int id, ProductoDTO dto) {
+
+		if (dao.update(id, DataMapper.fromDTO2Entityp(dto))) {
+
 			return true;
-		}else {
+		} else {
 			System.out.println("no edita");
 			return false;
 		}
-		
-		
+
 	}
-	public void eliminar(int id ) {
-		if(dao.delete(id)) {
-			String accion="Se acaba de eliminar un  producto por el usuario :";
-			String subject="Se acaba de eliminar un producto a la drogueria";
-			String usuarioCorreo = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioCorreo");
-			correo(usuarioCorreo,accion,usuarioCorreo,subject);
+
+	public void eliminar(int id) {
+		if (dao.delete(id)) {
+			String accion = "Se acaba de eliminar un  producto por el usuario :";
+			String subject = "Se acaba de eliminar un producto a la drogueria";
+			String usuarioCorreo = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+					.get("usuarioCorreo");
+			correo(usuarioCorreo, accion, usuarioCorreo, subject);
 			System.out.println("Se elimino mi perro");
-		}else {
+		} else {
 			System.out.println("no se elimino");
 		}
 	}

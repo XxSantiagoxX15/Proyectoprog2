@@ -23,11 +23,10 @@ public class ProveedorBean implements Serializable {
 	private ArrayList<ProveedorDTO> proveedor;
 	private ProveedorDTO dto;
 
-	
-	
-public ProveedorBean() {
-	pr= new AdminProveedor();
-}	
+	public ProveedorBean() {
+		pr = new AdminProveedor();
+	}
+
 	@PostConstruct
 	public void init() {
 		listar();
@@ -46,10 +45,11 @@ public ProveedorBean() {
 		return proveedor;
 	}
 
-public void agregar() {
-	dto= new ProveedorDTO(nombre,email,telefono);
-	pr.agregar(dto);
-}
+	public void agregar() {
+		dto = new ProveedorDTO(nombre, email, telefono);
+		pr.agregar(dto);
+	}
+
 	public AdminProveedor getPr() {
 		return pr;
 	}
@@ -105,11 +105,9 @@ public void agregar() {
 	public void setDto(ProveedorDTO dto) {
 		this.dto = dto;
 	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
 }
-
-
-

@@ -6,14 +6,14 @@ public class Detalle_facturaDTO {
 	private int producto;
 	private int cantidad;
 	private double subtotal_producto;
-	
-	public Detalle_facturaDTO(int factura,int producto, int cantidad,double subtotal_producto) {
-		this.factura=factura;
-		this.producto=producto;
-		this.cantidad=cantidad;
-		this.subtotal_producto=subtotal_producto;
+
+	public Detalle_facturaDTO(int factura, int producto, int cantidad, double subtotal_producto) {
+		this.factura = factura;
+		this.producto = producto;
+		this.cantidad = cantidad;
+		this.subtotal_producto = subtotal_producto;
 	}
-	
+
 	public int getId() {
 		return id;
 	}

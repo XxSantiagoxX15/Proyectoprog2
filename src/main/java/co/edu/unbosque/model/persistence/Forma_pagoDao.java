@@ -25,6 +25,7 @@ public class Forma_pagoDao implements DaoCrud {
 		}
 
 	}
+
 	@Override
 	public boolean create(Object o) {
 		open();
@@ -86,11 +87,10 @@ public class Forma_pagoDao implements DaoCrud {
 		return new ArrayList<Forma_pago>();
 	}
 
-	
 	public Forma_pago findOne(String nombre) {
 		open();
 		try {
-			Forma_pago selectedForma_pago = em.find(Forma_pago.class,nombre);
+			Forma_pago selectedForma_pago = em.find(Forma_pago.class, nombre);
 			return selectedForma_pago;
 		} catch (Exception e) {
 			// TODO: handle exception

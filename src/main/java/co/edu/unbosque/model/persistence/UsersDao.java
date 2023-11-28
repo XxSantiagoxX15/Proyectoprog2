@@ -10,20 +10,17 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceException;
 import jakarta.persistence.Query;
 
-public class UsersDao implements DaoCrud  {
+public class UsersDao implements DaoCrud {
 	private EntityManagerFactory emf;
 	private EntityManager em;
-	
-	
+
 	public UsersDao() {
 
 		emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 		em = emf.createEntityManager();
 
 	}
-	
-	
-	
+
 	public void open() {
 		if (!emf.isOpen() || !em.isOpen()) {
 			emf = Persistence.createEntityManagerFactory("DrogueriaPu");
@@ -127,44 +124,45 @@ public class UsersDao implements DaoCrud  {
 			}
 		}
 	}
-	
-	public boolean updateCuentaBloqueadaByEmail(String correo, boolean ctaBloqueada) {
-	    open();
-	    try {
-	        em.getTransaction().begin();
-	        Usuarios_drogueria selectedUser = findbyemail(correo);
 
-	        if (selectedUser != null) {
-	            selectedUser.setCta_bloqueada(ctaBloqueada);
-	            em.getTransaction().commit();
-	            return true;
-	        } else {
-	            // El usuario con el correo electrónico especificado no fue encontrado
-	            return false;
-	        }
-	    } catch (Exception e) {
-	        System.out.println(e.getMessage());
-	        return false;
-	    } finally {
-	        if (emf != null) {
-	            emf.close();
-	        }
-	        if (em != null) {
-	            em.close();
-	        }
-	    }
+	public boolean updateCuentaBloqueadaByEmail(String correo, boolean ctaBloqueada) {
+		open();
+		try {
+			em.getTransaction().begin();
+			Usuarios_drogueria selectedUser = findbyemail(correo);
+
+			if (selectedUser != null) {
+				selectedUser.setCta_bloqueada(ctaBloqueada);
+				em.getTransaction().commit();
+				return true;
+			} else {
+				// El usuario con el correo electrónico especificado no fue encontrado
+				return false;
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return false;
+		} finally {
+			if (emf != null) {
+				emf.close();
+			}
+			if (em != null) {
+				em.close();
+			}
+		}
 	}
+
 	@Override
 	public ArrayList<?> findAll() {
 		open();
 		try {
-			return (ArrayList<Usuarios_drogueria>)em.createQuery("SELECT u FROM Usuarios_drogueria u").getResultList();
-         
+			return (ArrayList<Usuarios_drogueria>) em.createQuery("SELECT u FROM Usuarios_drogueria u").getResultList();
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
-			
-		}finally {
+
+		} finally {
 			if (emf != null) {
 				emf.close();
 			}
@@ -184,7 +182,7 @@ public class UsersDao implements DaoCrud  {
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
-		}finally {
+		} finally {
 			if (emf != null) {
 				emf.close();
 			}
@@ -194,22 +192,23 @@ public class UsersDao implements DaoCrud  {
 		}
 		return null;
 	}
-	
-	public Usuarios_drogueria findbyemail(String email) {
-	    open();
-	    try {
-	        Query query = em.createQuery("SELECT u FROM Usuarios_drogueria u WHERE u.email = :email", Usuarios_drogueria.class);
-	        query.setParameter("email", email);
 
-	        Usuarios_drogueria selectedUser = (Usuarios_drogueria) query.getSingleResult();
-	        return selectedUser;
-	    } catch (PersistenceException e) {
-	        // Manejo específico para problemas con la creación de la consulta
-	        e.printStackTrace(); // o usa algún mecanismo de loggeo
-	    } catch (Exception e) {
-	        // Manejo de otras excepciones...
-	        e.printStackTrace(); // o usa algún mecanismo de loggeo
-	    }
-		return  null;
+	public Usuarios_drogueria findbyemail(String email) {
+		open();
+		try {
+			Query query = em.createQuery("SELECT u FROM Usuarios_drogueria u WHERE u.email = :email",
+					Usuarios_drogueria.class);
+			query.setParameter("email", email);
+
+			Usuarios_drogueria selectedUser = (Usuarios_drogueria) query.getSingleResult();
+			return selectedUser;
+		} catch (PersistenceException e) {
+			// Manejo específico para problemas con la creación de la consulta
+			e.printStackTrace(); // o usa algún mecanismo de loggeo
+		} catch (Exception e) {
+			// Manejo de otras excepciones...
+			e.printStackTrace(); // o usa algún mecanismo de loggeo
+		}
+		return null;
 	}
 }

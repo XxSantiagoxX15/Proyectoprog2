@@ -5,7 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "usuarios_drogueria")
+@Table(name = "USUARIOS_DROGUERIA")
 public class Usuarios_drogueria {
 	@Id
 	private int id;
@@ -15,6 +15,7 @@ public class Usuarios_drogueria {
 	private String user_password;
 	private boolean administrador;
 	private boolean cta_bloqueada;
+
 	public Usuarios_drogueria() {
 		// TODO Auto-generated constructor stub
 	}

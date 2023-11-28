@@ -9,15 +9,15 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 public class CompraInventarioDao implements DaoCrud {
-	
+
 	private EntityManagerFactory emf;
 	private EntityManager em;
-	
+
 	public CompraInventarioDao() {
 		emf = Persistence.createEntityManagerFactory("DrogueriaPu");
 		em = emf.createEntityManager();
 	}
-	
+
 	public void open() {
 		if (!emf.isOpen() || !em.isOpen()) {
 			emf = Persistence.createEntityManagerFactory("DrogueriaPu");
@@ -25,6 +25,7 @@ public class CompraInventarioDao implements DaoCrud {
 		}
 
 	}
+
 	@Override
 	public boolean create(Object o) {
 		open();

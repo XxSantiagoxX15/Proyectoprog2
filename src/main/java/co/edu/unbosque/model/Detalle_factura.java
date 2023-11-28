@@ -9,7 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "detalle_factura")
+@Table(name = "DETALLE_FACTURA")
 public class Detalle_factura {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,16 +19,18 @@ public class Detalle_factura {
 	private int producto;
 	private int cantidad;
 	private double subtotal_producto;
-	
-	public Detalle_factura(int factura,int producto, int cantidad,double subtotal_producto) {
-		this.factura=factura;
-		this.producto=producto;
-		this.cantidad=cantidad;
-		this.subtotal_producto=subtotal_producto;
+
+	public Detalle_factura(int factura, int producto, int cantidad, double subtotal_producto) {
+		this.factura = factura;
+		this.producto = producto;
+		this.cantidad = cantidad;
+		this.subtotal_producto = subtotal_producto;
 	}
-public Detalle_factura() {
-	// TODO Auto-generated constructor stub
-}
+
+	public Detalle_factura() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}

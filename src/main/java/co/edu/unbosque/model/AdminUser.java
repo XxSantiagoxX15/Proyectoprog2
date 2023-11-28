@@ -20,13 +20,14 @@ import co.edu.unbosque.model.persistence.UsersDao;
 public class AdminUser {
 	private UsersDao dao;
 
-	 private static final Logger logger = LogManager.getLogger(AdminUser.class);
+	private static final Logger logger = LogManager.getLogger(AdminUser.class);
+
 	public AdminUser() {
 		dao = new UsersDao();
 	}
 
 	public String encryptPassword(String password) {
-		
+
 		if (isValidPassword(password)) {
 			try {
 				MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -49,7 +50,7 @@ public class AdminUser {
 	}
 
 	public boolean isValidPassword(String password) {
-		
+
 		if (password.length() < 8) {
 			return false;
 		}
@@ -70,9 +71,7 @@ public class AdminUser {
 		return hasUppercase && hasSpecialCharacter;
 	}
 
-	
-
-	public void Correo(String correo, String accion, String nombre,String subject) {
+	public void Correo(String correo, String accion, String nombre, String subject) {
 		String host = "smtp.gmail.com";
 		final String user = "sophidrogueria@gmail.com";// change accordingly
 		final String password = "smyg onjr muay uwfa";// change accordingly
@@ -94,13 +93,12 @@ public class AdminUser {
 
 		// Compose the message
 		try {
-			
+
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(user));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setSubject(subject);
-			message.setText(accion +nombre);
-			
+			message.setText(accion + nombre);
 
 			// send the message
 			Transport.send(message);
@@ -111,81 +109,85 @@ public class AdminUser {
 		}
 
 	}
-	public boolean insertar(UserDTO dto) {
-	    String accion = "Se acaba de crear un nuevo usuario con correo  ";
-	    String subject = "Creacion de nuevo usuario en Shopy administrativo";
-	    
-	    if (dao.create(DataMapper.fromDTO2Entity(dto))) {
-	        // If insertion is successful, send email
-	        Correo(dto.getEmail(), accion, dto.getEmail(), subject);
-	        return true;
-	    }
 
-	    return false;
+	public boolean insertar(UserDTO dto) {
+		String accion = "Se acaba de crear un nuevo usuario con correo  ";
+		String subject = "Creacion de nuevo usuario en Shopy administrativo";
+
+		if (dao.create(DataMapper.fromDTO2Entity(dto))) {
+			// If insertion is successful, send email
+			Correo(dto.getEmail(), accion, dto.getEmail(), subject);
+			return true;
+		}
+
+		return false;
 	}
 
 	public void listar() {
 		System.out.println(dao.findAll().toString());
 
 	}
-	
+
 	public String login(String correo, String clave) {
-	    UserDTO dto = DataMapper.fromEntity2DTO(dao.findbyemail(correo));
+		UserDTO dto = DataMapper.fromEntity2DTO(dao.findbyemail(correo));
 
-	    // Obtener el contador de intentos fallidos de la sesión
-	    Integer intentosFallidos = (Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("intentosFallidos");
+		// Obtener el contador de intentos fallidos de la sesión
+		Integer intentosFallidos = (Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.get("intentosFallidos");
 
-	    // Si no existe, inicializarlo
-	    if (intentosFallidos == null) {
-	        intentosFallidos = 0;
-	    }
+		// Si no existe, inicializarlo
+		if (intentosFallidos == null) {
+			intentosFallidos = 0;
+		}
 
-	    // Verificar si la cuenta está bloqueada
-	    if (dto != null && dto.isCta_bloqueada()) {
-	        return "La cuenta está bloqueada.";
-	    }
+		// Verificar si la cuenta está bloqueada
+		if (dto != null && dto.isCta_bloqueada()) {
+			return "La cuenta está bloqueada.";
+		}
 
-	    if (dto != null && correo.equals(dto.getEmail()) && encryptPassword(clave).equals(dto.getUser_password())) {
-	        // Almacenar el correo en la sesión
-	        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioCorreo", correo);
+		if (dto != null && correo.equals(dto.getEmail()) && encryptPassword(clave).equals(dto.getUser_password())) {
+			// Almacenar el correo en la sesión
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioCorreo", correo);
 
-	        // Limpiar el contador de intentos fallidos al iniciar sesión exitosamente
-	        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("intentosFallidos", 0);
+			// Limpiar el contador de intentos fallidos al iniciar sesión exitosamente
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("intentosFallidos", 0);
 
-	        return "Inicio de sesión exitoso";
-	    } else {
-	        // Incrementar el contador de intentos fallidos
-	        intentosFallidos++;
+			return "Inicio de sesión exitoso";
+		} else {
+			// Incrementar el contador de intentos fallidos
+			intentosFallidos++;
 
-	        // Actualizar el contador de intentos fallidos en la sesión
-	        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("intentosFallidos", intentosFallidos);
+			// Actualizar el contador de intentos fallidos en la sesión
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("intentosFallidos",
+					intentosFallidos);
 
-	        // Si se supera un límite de intentos fallidos, bloquear la cuenta
-	        if (intentosFallidos >= 3) {
-	            // Bloquear la cuenta solo si no es un administrador
-	            if (dto != null && !dto.isAdministrador()) {
-	                dto.setCta_bloqueada(true);
+			// Si se supera un límite de intentos fallidos, bloquear la cuenta
+			if (intentosFallidos >= 3) {
+				// Bloquear la cuenta solo si no es un administrador
+				if (dto != null && !dto.isAdministrador()) {
+					dto.setCta_bloqueada(true);
 
-	                // Reiniciar el contador de intentos fallidos después de bloquear la cuenta
-	                intentosFallidos = 0;
+					// Reiniciar el contador de intentos fallidos después de bloquear la cuenta
+					intentosFallidos = 0;
 
-	                // Actualizar la cuenta bloqueada en la base de datos
-	                dao.updateCuentaBloqueadaByEmail(correo, true);
+					// Actualizar la cuenta bloqueada en la base de datos
+					dao.updateCuentaBloqueadaByEmail(correo, true);
 
-	                return "Se ha excedido el límite de intentos fallidos. La cuenta ha sido bloqueada.";
-	            }
-	        }
+					return "Se ha excedido el límite de intentos fallidos. La cuenta ha sido bloqueada.";
+				}
+			}
 
-	        // Retornar un mensaje genérico de inicio de sesión fallido
-	        if (dto != null && dto.isAdministrador()) {
-	            return "Credenciales incorrectas para administrador. Intento fallido número " + intentosFallidos;
-	        } else {
-	            return "Credenciales incorrectas. Intento fallido número " + intentosFallidos;
-	        }
-	    }
+			// Retornar un mensaje genérico de inicio de sesión fallido
+			if (dto != null && dto.isAdministrador()) {
+				return "Credenciales incorrectas para administrador. Intento fallido número " + intentosFallidos;
+			} else {
+				return "Credenciales incorrectas. Intento fallido número " + intentosFallidos;
+			}
+		}
 	}
+
 	public UserDTO buscar(String email) {
-	UserDTO DTO=	DataMapper.fromEntity2DTO(dao.findbyemail(email));
-	return DTO;
+		UserDTO DTO = DataMapper.fromEntity2DTO(dao.findbyemail(email));
+		return DTO;
 	}
 }

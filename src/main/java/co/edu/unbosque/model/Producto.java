@@ -9,8 +9,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "producto")
-public class Producto implements Serializable{
+@Table(name = "PRODUCTO")
+public class Producto implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -20,24 +20,28 @@ public class Producto implements Serializable{
 	private int cantidad_inventario;
 	private String categoria;
 
-	public Producto(String nombre, String descripcion, double precio,int cantidad_inventario, String categoria) {
-		this.nombre=nombre;
-		this.descripcion=descripcion;
-		this.precio=precio;
-		this.cantidad_inventario=cantidad_inventario;
-		this.categoria=categoria;
+	public Producto(String nombre, String descripcion, double precio, int cantidad_inventario, String categoria) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.cantidad_inventario = cantidad_inventario;
+		this.categoria = categoria;
 	}
-	public Producto(int id,String nombre, String descripcion, double precio,int cantidad_inventario, String categoria) {
-		this.id=id;
-		this.nombre=nombre;
-		this.descripcion=descripcion;
-		this.precio=precio;
-		this.cantidad_inventario=cantidad_inventario;
-		this.categoria=categoria;
+
+	public Producto(int id, String nombre, String descripcion, double precio, int cantidad_inventario,
+			String categoria) {
+		this.id = id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.cantidad_inventario = cantidad_inventario;
+		this.categoria = categoria;
 	}
-public Producto() {
-	// TODO Auto-generated constructor stub
-}
+
+	public Producto() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -85,6 +89,7 @@ public Producto() {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
+
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio

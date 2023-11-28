@@ -13,87 +13,106 @@ import jakarta.inject.Named;
 
 @Named
 @ViewScoped
-public class Forma_pagoBean implements Serializable{
+public class Forma_pagoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-private String nombre;
-private boolean disponible; 
-private ArrayList<Forma_pagoDTO> formapago;
-private Forma_pagoDTO dto;
-private AdminFormaPago fp;
+	private String nombre;
+	private boolean disponible;
+	private ArrayList<Forma_pagoDTO> formapago;
+	private Forma_pagoDTO dto;
+	private AdminFormaPago fp;
 
-
-public Forma_pagoBean() {
-	dto=new Forma_pagoDTO();
-	fp = new AdminFormaPago();
-}
-
-@PostConstruct
-public void init() {
-	listar();
-	fp = new AdminFormaPago();
-
-}
-public ArrayList<Forma_pagoDTO> listar() {
-	formapago = fp.listar(dto);
-	if (formapago != null) {
-		for (Forma_pagoDTO formapago: formapago) {
-			
-
-		}
+	
+	
+	public Forma_pagoBean() {
+		dto = new Forma_pagoDTO();
+		fp = new AdminFormaPago();
 	}
-	return formapago;
-}
 
+	
+	
+	@PostConstruct
+	public void init() {
+		listar();
+		fp = new AdminFormaPago();
 
+	}
 
-public Forma_pagoDTO buscar() {
-	fp.buscar(nombre);
-	System.out.println(dto.toString());
-	return dto;
 	
 	
 	
-}
+	
+	public ArrayList<Forma_pagoDTO> listar() {
+		formapago = fp.listar(dto);
+		if (formapago != null) {
+			for (Forma_pagoDTO formapago : formapago) {
 
-public String getNombre() {
-	return nombre;
-}
+			}
+		}
+		return formapago;
+	}
 
-public void setNombre(String nombre) {
-	this.nombre = nombre;
-}
+	public Forma_pagoDTO buscar() {
+		fp.buscar(nombre);
+		System.out.println(dto.toString());
+		return dto;
 
-public boolean isDisponible() {
-	return disponible;
-}
+	}
+	
 
-public void setDisponible(boolean disponible) {
-	this.disponible = disponible;
-}
+	public String getNombre() {
+		return nombre;
+	}
+	
+	
 
-public ArrayList<Forma_pagoDTO> getFormapago() {
-	return formapago;
-}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	
 
-public void setFormapago(ArrayList<Forma_pagoDTO> formapago) {
-	this.formapago = formapago;
-}
+	public boolean isDisponible() {
+		return disponible;
+	}
+	
+	
 
-public Forma_pagoDTO getDto() {
-	return dto;
-}
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
+	}
 
-public void setDto(Forma_pagoDTO dto) {
-	this.dto = dto;
-}
+	
+	
+	public ArrayList<Forma_pagoDTO> getFormapago() {
+		return formapago;
+	}
 
-public AdminFormaPago getFp() {
-	return fp;
-}
+	public void setFormapago(ArrayList<Forma_pagoDTO> formapago) {
+		this.formapago = formapago;
+	}
+	
+	
 
-public void setFp(AdminFormaPago fp) {
-	this.fp = fp;
-}
+	public Forma_pagoDTO getDto() {
+		return dto;
+	}
+	
+	
 
+	public void setDto(Forma_pagoDTO dto) {
+		this.dto = dto;
+	}
+
+	
+	
+	public AdminFormaPago getFp() {
+		return fp;
+	}
+	
+	
+
+	public void setFp(AdminFormaPago fp) {
+		this.fp = fp;
+	}
 
 }

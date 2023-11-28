@@ -7,38 +7,42 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <!-- Agrega las bibliotecas de estilos de PrimeFaces -->
-   
-    <link rel="stylesheet" type="text/css" href="css/estadistica.css" />
+	<!-- Agrega las bibliotecas de estilos de PrimeFaces -->
+
+	<link rel="stylesheet" type="text/css" href="css/estadistica.css" />
 </h:head>
 
 <h:body>
-    <h1>Estadísticas de la app</h1>
+	<h1>Estadísticas de la app</h1>
 
-    <h:form id="myForm">
-      
- <p:button value="Volver" icon="pi pi-plus" outcome="home.xhtml"
-                styleClass="rounded-button ui-button-secondary back-button-container" />
-       
-<div style="display: flex; justify-content: space-between;">
-    <div id="donutContainer1" class="grid">
-        <div class="col-12 lg:col-6 xl:col-4">
-            <div class="card">
-                <h:outputText value="Grafico de productos por vencerse"/>
-                <p:donutChart id="donutChart1" model="#{productoBean.crearDonaProductosxagotar()}" style="width: 100%; height: 500px;" />
-            </div>
-        </div>
-    </div>
-    
-    <div id="donutContainer2" class="grid">
-        <div class="col-12 lg:col-6 xl:col-4">
-            <div class="card">
-                <h:outputText value="Grafico de productos mas vendidos"/>
-                <p:donutChart id="donutChart2" model="#{productoBean.crearDonaProductosmasvendidos()}" style="width: 100%; height: 500px;" />
-            </div>
-        </div>
-    </div>
-</div>
-</h:form>
+	<h:form id="myForm">
+
+		<p:button value="Volver" icon="pi pi-plus" outcome="home.xhtml"
+			styleClass="rounded-button ui-button-secondary back-button-container" />
+
+		<div style="display: flex; justify-content: space-between;">
+			<div id="donutContainer1" class="grid">
+				<div class="col-12 lg:col-6 xl:col-4">
+					<div class="card">
+						<h:outputText value="Grafico de productos por vencerse" />
+						<p:donutChart id="donutChart1"
+							model="#{productoBean.crearDonaProductosxagotar()}"
+							style="width: 100%; height: 500px;" />
+					</div>
+				</div>
+			</div>
+
+			<div id="donutContainer2" class="grid">
+				<div class="col-12 lg:col-6 xl:col-4">
+					<div class="card">
+						<h:outputText value="Grafico de productos mas vendidos" />
+						<p:donutChart id="donutChart2"
+							model="#{productoBean.crearDonaProductosmasvendidos()}"
+							style="width: 100%; height: 500px;" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</h:form>
 </h:body>
 </html>

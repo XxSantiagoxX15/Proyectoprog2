@@ -25,7 +25,7 @@ public class InventarioBean implements Serializable {
 	private int productos;
 	private int cantidad_adquirida;
 	private LocalDate fecha;
-	private int proveedores; 
+	private int proveedores;
 	private int forma_pagos;
 	private AdminInventario in;
 	private AdminProducto pr;
@@ -43,17 +43,17 @@ public class InventarioBean implements Serializable {
 	public void insertar() {
 		pr = new AdminProducto();
 		fecha = LocalDate.now();
-	
-		ProductoDTO pro= pr.buscar(productos);
-		dto2=new ProductoDTO(pro.getNombre(),pro.getDescripcion(),pro.getPrecio(),pro.getCantidad_inventario()+cantidad_adquirida,pro.getCategoria());
-		if(pr.editar(productos, dto2)==true) {
+
+		ProductoDTO pro = pr.buscar(productos);
+		dto2 = new ProductoDTO(pro.getNombre(), pro.getDescripcion(), pro.getPrecio(),
+				pro.getCantidad_inventario() + cantidad_adquirida, pro.getCategoria());
+		if (pr.editar(productos, dto2) == true) {
 			dto = new CompraInventarioDTO(productos, cantidad_adquirida, fecha, proveedores, forma_pagos);
 			in.ingresarinv(dto);
 			System.out.println(dto.toString());
-		}else {
+		} else {
 			System.out.println("no se cambio en producto");
 		}
-		
 
 	}
 

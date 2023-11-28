@@ -10,6 +10,7 @@ import co.edu.unbosque.model.persistence.ProveedorDao;
 public class AdminProveedor {
 	private ProveedorDao dao;
 	private static final Logger logger = LogManager.getLogger(AdminProveedor.class);
+
 	public AdminProveedor() {
 		dao = new ProveedorDao();
 	}
@@ -42,4 +43,3 @@ public class AdminProveedor {
 		return false;
 	}
 }
-
