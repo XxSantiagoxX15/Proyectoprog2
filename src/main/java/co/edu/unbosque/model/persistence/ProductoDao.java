@@ -211,7 +211,7 @@ public class ProductoDao implements DaoCrud {
 	public List<Object[]> findBybestseller() {
 		open();
 		try {
-			return em.createNativeQuery("SELECT * FROM Vista_ProductosMasVendidos").getResultList();
+			return em.createNativeQuery("SELECT * FROM vista_productosmasvendidos").getResultList();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
